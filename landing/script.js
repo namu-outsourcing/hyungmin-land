@@ -62,15 +62,43 @@ const revealObserver = new IntersectionObserver(
   (entries, observer) => {
     entries.forEach((entry) => {
       if (!entry.isIntersecting) return;
-      entry.target.classList.add('is-visible');
-      observer.unobserve(entry.target);
+      
+      const target = entry.target;
+      target.classList.add('is-visible');
+      
+      // 하위 stagger-item들 순차적 딜레이 부여
+      const staggers = target.querySelectorAll('.stagger-item');
+      staggers.forEach((item, index) => {
+        item.style.transitionDelay = `${index * 0.12}s`;
+      });
+      
+      observer.unobserve(target);
     });
   },
   {
-    rootMargin: '0px 0px -12% 0px',
+    rootMargin: '0px 0px -10% 0px',
     threshold: 0.1,
   }
 );
+
+// 히어로 섹션 마우스 패럴랙스 (PC 전용)
+const hero = document.querySelector('.hero');
+const circles = document.querySelectorAll('.hero-circle-1, .hero-circle-2');
+
+if (hero && circles.length && window.innerWidth > 1080) {
+  hero.addEventListener('mousemove', (e) => {
+    const { clientX, clientY } = e;
+    const centerX = window.innerWidth / 2;
+    const centerY = window.innerHeight / 2;
+    
+    circles.forEach((circle, index) => {
+      const factor = (index + 1) * 25;
+      const x = (clientX - centerX) / factor;
+      const y = (clientY - centerY) / factor;
+      circle.style.transform = `translate(${x}px, ${y}px)`;
+    });
+  });
+}
 
 revealTargets.forEach((target) => revealObserver.observe(target));
 

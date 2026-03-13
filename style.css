@@ -634,33 +634,6 @@ a {
   max-width: 380px;
 }
 
-.about-profile::before {
-  content: "";
-  position: absolute;
-  top: 55%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 95%;
-  padding-bottom: 95%;
-  border-radius: 50%;
-  background: radial-gradient(circle, #f0f3f8 0%, rgba(240, 243, 248, 0.3) 100%);
-  z-index: -1;
-}
-
-.about-profile::after {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 70%;
-  height: 4px;
-  background: rgba(0, 0, 0, 0.05);
-  filter: blur(8px);
-  border-radius: 50%;
-  z-index: -2;
-}
-
 .about-profile img {
   width: 100%;
   height: auto;

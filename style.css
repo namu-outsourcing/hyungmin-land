@@ -100,16 +100,13 @@ a {
   margin-right: 8px;
 }
 
-.party-logo {
-  width: 132px;
-  max-width: 30vw;
-  height: auto;
-  aspect-ratio: 2.92 / 1;
-  object-fit: cover;
-  object-position: center bottom;
-  filter: none;
-  border-radius: 6px;
-  display: block;
+/* 모바일 로고 크기 최적화 */
+@media (max-width: 760px) {
+  .party-logo {
+    height: 38px;
+    width: 130px;
+    object-position: center top;
+  }
 }
 
 .main-nav {
@@ -199,81 +196,57 @@ a {
   z-index: 1000;
   background: transparent;
   border-bottom: 1px solid transparent;
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  padding: 10px 0;
+  transition: all 0.4s ease;
+  padding: 24px 0;
 }
 
 .site-header.is-scrolled {
-  background: rgba(255, 255, 255, 0.85);
+  background: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(15px);
   -webkit-backdrop-filter: blur(15px);
   border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
-  padding: 5px 0;
+  padding: 12px 0;
 }
 
 .brand-wrap {
   display: flex;
   align-items: center;
   gap: 12px;
-  text-decoration: none;
 }
 
 .party-logo {
-  height: 36px;
-  width: auto;
-  object-fit: contain;
-  transition: all 0.3s ease;
-}
-
-/* 초기 상태 로고 시인성 보조 */
-.site-header:not(.is-scrolled) .party-logo {
-  filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.15));
+  height: 54px; /* 글씨 크기를 키우기 위해 높이 상향 */
+  width: 185px; /* 가로 너비 충분히 확보 */
+  object-fit: cover;
+  object-position: center top; /* 이미지의 맨 윗부분부터 시작하여 하단 레드 노출 원천 차단 */
+  filter: drop-shadow(0 2px 10px rgba(0, 0, 0, 0.05));
+  display: block;
 }
 
 .brand-title {
   font-size: 1.15rem;
   font-weight: 500;
-  color: #ffffff; /* 초기 컬러: 화이트 */
+  color: #121820; /* 다시 다크톤으로 가독성 확보 */
   line-height: 1.2;
-  transition: color 0.3s ease;
 }
 
 .brand-title strong {
   font-weight: 800;
-  color: #ffffff; /* 초기에는 강조색도 화이트로 일체감 부여 */
-  transition: color 0.3s ease;
-}
-
-.brand-sub {
-  font-size: 0.88rem; /* 폰트 크기 대폭 상향 */
-  font-weight: 500;
-  color: rgba(255, 255, 255, 0.95);
-  margin-top: 3px;
-  letter-spacing: -0.01em;
-  transition: color 0.3s ease;
-}
-
-/* 스크롤 시 헤더 텍스트 색상 전환 */
-.site-header.is-scrolled .brand-title {
-  color: #121820;
-}
-
-.site-header.is-scrolled .brand-title strong {
   color: var(--ppp-red);
 }
 
-.site-header.is-scrolled .brand-sub {
-  color: #4a515f; /* 스크롤 시에도 기존보다 더 진한 컬러 적용 */
+.brand-sub {
+  font-size: 0.88rem;
+  font-weight: 500;
+  color: #4a515f;
+  margin-top: 3px;
+  letter-spacing: -0.01em;
 }
 
 .main-nav a {
-  color: #ffffff !important; /* 초기 메뉴 컬러: 화이트 */
-  transition: color 0.3s ease;
-}
-
-.site-header.is-scrolled .main-nav a {
   color: #121820 !important;
+  font-weight: 700;
+  font-size: 0.88rem;
 }
 
 .hero {
@@ -282,151 +255,147 @@ a {
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #fcfdfe;
+  background: #ffffff; /* 깨끗한 화이트 배경 */
   overflow: hidden;
+  padding: 0 20px;
 }
 
-.hero-bg {
+.hero-graphic {
   position: absolute;
   inset: 0;
-  background: url("./assets/images/hero.jpg") center 20% / cover no-repeat;
   z-index: 0;
+  pointer-events: none;
 }
 
-.hero-overlay {
+.blob {
   position: absolute;
-  inset: 0;
-  background: 
-    linear-gradient(to top, 
-      #ffffff 0%, 
-      rgba(255, 255, 255, 0.95) 25%, 
-      rgba(255, 255, 255, 0) 55%
-    );
-  z-index: 1;
+  border-radius: 50%;
+  filter: blur(75px); /* 블러를 약간 줄여 색상 확보 */
+  opacity: 0.6; /* 불투명도를 높여 존재감 강화 */
+  animation: blob-float 20s infinite alternate ease-in-out;
+}
+
+.blob-1 {
+  width: 75vw;
+  height: 75vw;
+  background: radial-gradient(circle, rgba(230, 30, 43, 0.12) 0%, transparent 75%);
+  top: -20%;
+  right: -10%;
+}
+
+.blob-2 {
+  width: 65vw;
+  height: 65vw;
+  background: radial-gradient(circle, rgba(241, 160, 112, 0.15) 0%, transparent 75%);
+  bottom: -15%;
+  left: -5%;
+  animation-delay: -7s;
+}
+
+.blob-3 {
+  width: 45vw;
+  height: 45vw;
+  background: radial-gradient(circle, rgba(0, 181, 226, 0.08) 0%, transparent 75%);
+  top: 30%;
+  left: 15%;
+  opacity: 0.4;
+  animation-delay: -12s;
+}
+
+.hero-container {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center; /* 다시 중앙 정렬 */
+  max-width: 1220px;
+  width: 100%;
 }
 
 .hero-content {
-  position: relative;
-  z-index: 2;
-  text-align: left;
-  max-width: 1220px;
-  width: 100%;
-  margin-top: 40px;
-  padding: 0 20px;
+  flex: 1;
+  text-align: center; /* 텍스트 중앙 정렬 */
+  max-width: 900px;
 }
 
 .hero-badge {
   display: inline-block;
   padding: 6px 16px;
-  background: rgba(230, 30, 43, 0.1);
+  background: rgba(230, 30, 43, 0.08);
   color: var(--ppp-red);
   font-size: 0.9rem;
   font-weight: 700;
   border-radius: 6px;
-  margin-bottom: 24px;
+  margin-bottom: 12px;
 }
 
 .hero-title {
-  font-size: clamp(2.4rem, 6.5vw, 4.2rem);
-  line-height: 1.2;
+  font-size: clamp(2.8rem, 8vw, 5.5rem); /* 사진이 없으므로 크기 확대 */
+  line-height: 1.15;
   color: #121820;
-  margin-bottom: 24px;
+  margin-bottom: 28px;
   letter-spacing: -0.04em;
   font-weight: 800;
 }
 
-.text-highlight::after {
-  background: rgba(230, 30, 43, 0.08); /* 하이라이트 색상 더 연하게 */
+.hero-title .text-white {
+  color: #121820;
 }
 
-.text-name {
+.hero-title .text-point {
   color: var(--ppp-red);
 }
 
 .hero-description {
-  font-size: 1.2rem;
+  font-size: 1.35rem; /* 사진이 없으므로 설명 크기도 확대 */
   line-height: 1.7;
-  color: #343b48;
-  margin-bottom: 40px;
+  color: #4a515f;
+  margin-bottom: 48px;
   word-break: keep-all;
-  max-width: 600px;
+  font-weight: 500;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .hero-btns {
   display: flex;
   gap: 16px;
-  justify-content: flex-start;
+  justify-content: center; /* 버튼 중앙 정렬 */
 }
 
 .btn-main, .btn-sub {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  height: 54px;
-  padding: 0 32px;
-  border-radius: 12px;
-  font-size: 1.05rem;
+  height: 60px;
+  padding: 0 40px;
+  border-radius: 14px;
+  font-size: 1.1rem;
   font-weight: 700;
-  transition: all 0.3s ease;
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
 .btn-main {
   background: var(--ppp-red);
   color: #ffffff;
-  box-shadow: 0 10px 20px rgba(230, 30, 43, 0.15);
+  box-shadow: 0 10px 25px rgba(230, 30, 43, 0.2);
 }
 
 .btn-main:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 15px 30px rgba(230, 30, 43, 0.25);
+  transform: translateY(-6px) scale(1.02);
+  box-shadow: 0 15px 35px rgba(230, 30, 43, 0.3);
 }
 
 .btn-sub {
   background: #ffffff;
-  color: #1a1f27;
-  border: 1px solid #d8dee8;
+  color: #121820;
+  border: 1px solid #edf1f7;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
 }
 
 .btn-sub:hover {
   background: #f8f9fb;
-  transform: translateY(-3px);
-}
-
-.hero-scroll {
-  position: absolute;
-  bottom: 40px;
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 10px;
-  color: #5a6270;
-  font-size: 0.7rem;
-  font-weight: 700;
-  letter-spacing: 0.2em;
-  z-index: 2;
-}
-
-.mouse {
-  width: 20px;
-  height: 32px;
-  border: 2px solid #d8dee8;
-  border-radius: 10px;
-  position: relative;
-}
-
-.mouse::before {
-  content: "";
-  position: absolute;
-  top: 6px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 3px;
-  height: 6px;
-  background: var(--ppp-red);
-  border-radius: 2px;
-  animation: mouse-scroll 2s infinite;
+  transform: translateY(-4px);
 }
 
 @keyframes mouse-scroll {
@@ -1148,16 +1117,16 @@ a {
   }
 
   .party-logo {
-    width: 106px;
-    height: auto;
+    height: 46px;
+    width: 160px;
+    object-position: center top;
+    background: transparent;
+    padding: 0;
+    box-shadow: none;
   }
 
   .brand-wrap {
     gap: 8px;
-  }
-
-  .party-logo {
-    height: 32px;
   }
 
   .brand-title {
@@ -1310,17 +1279,37 @@ a {
     );
   }
 
-  .hero-content {
-    text-align: center;
-    margin-top: 0;
-    margin-bottom: 20px;
+  .hero-container {
+    flex-direction: column;
+    gap: 30px;
+    padding: 0 20px;
+  }
+
+  .hero-visual-main {
+    flex: 0 0 auto;
     width: 100%;
+    order: 2; /* 텍스트 아래에 이미지 배치 */
+  }
+
+  .hero-image {
+    max-width: 280px;
+    margin: 0 auto;
+  }
+
+  .hero-content {
+    order: 1;
+    text-align: center;
+    width: 100%;
+  }
+
+  .hero-btns {
+    justify-content: center;
   }
 
   .hero-badge {
     font-size: 0.82rem;
     padding: 5px 14px;
-    margin-bottom: 12px;
+    margin-bottom: 8px; /* 12px에서 8px로 추가 단축 */
     background: rgba(230, 30, 43, 0.1);
     color: var(--ppp-red);
   }
@@ -1514,6 +1503,11 @@ a {
   }
 
   .party-logo {
-    height: 30px;
+    height: 42px; /* 모바일 전 단계에서 시원한 크기 유지 */
+    width: 145px;
+    object-position: center top;
+    background: transparent;
+    padding: 0;
+    box-shadow: none;
   }
 }

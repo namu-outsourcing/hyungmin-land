@@ -191,6 +191,27 @@ a {
   transform: translateY(-7px) rotate(-45deg);
 }
 
+.site-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  background: transparent;
+  border-bottom: 1px solid transparent;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  padding: 10px 0;
+}
+
+.site-header.is-scrolled {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+  padding: 5px 0;
+}
+
 .brand-wrap {
   display: flex;
   align-items: center;
@@ -199,35 +220,41 @@ a {
 }
 
 .party-logo {
-  height: 38px;
+  height: 36px;
   width: auto;
   object-fit: contain;
+  transition: all 0.3s ease;
 }
 
-.brand-text {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+/* 초기 상태 로고 시인성 보조 */
+.site-header:not(.is-scrolled) .party-logo {
+  filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.15));
 }
 
 .brand-title {
   font-size: 1.15rem;
   font-weight: 500;
-  color: #ffffff;
+  color: #ffffff; /* 초기 컬러: 화이트 */
   line-height: 1.2;
+  transition: color 0.3s ease;
 }
 
 .brand-title strong {
   font-weight: 800;
-  color: #ffffff;
+  color: #ffffff; /* 초기에는 강조색도 화이트로 일체감 부여 */
+  transition: color 0.3s ease;
 }
 
 .brand-sub {
-  font-size: 0.72rem;
-  color: rgba(255, 255, 255, 0.85);
-  margin-top: 2px;
+  font-size: 0.88rem; /* 폰트 크기 대폭 상향 */
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.95);
+  margin-top: 3px;
+  letter-spacing: -0.01em;
+  transition: color 0.3s ease;
 }
 
+/* 스크롤 시 헤더 텍스트 색상 전환 */
 .site-header.is-scrolled .brand-title {
   color: #121820;
 }
@@ -237,7 +264,16 @@ a {
 }
 
 .site-header.is-scrolled .brand-sub {
-  color: #5a6270;
+  color: #4a515f; /* 스크롤 시에도 기존보다 더 진한 컬러 적용 */
+}
+
+.main-nav a {
+  color: #ffffff !important; /* 초기 메뉴 컬러: 화이트 */
+  transition: color 0.3s ease;
+}
+
+.site-header.is-scrolled .main-nav a {
+  color: #121820 !important;
 }
 
 .hero {
@@ -246,9 +282,8 @@ a {
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #f8f9fb;
+  background-color: #fcfdfe;
   overflow: hidden;
-  padding: 0 20px;
 }
 
 .hero-bg {
@@ -256,19 +291,14 @@ a {
   inset: 0;
   background: url("./assets/images/hero.jpg") center 20% / cover no-repeat;
   z-index: 0;
-  transform: scale(1.05);
 }
 
 .hero-overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(
-    105deg, 
-    rgba(255, 255, 255, 0.95) 0%, 
-    rgba(255, 255, 255, 0.85) 35%, 
-    rgba(255, 255, 255, 0.4) 60%, 
-    rgba(230, 30, 43, 0.15) 100%
-  );
+  background: 
+    radial-gradient(circle at 70% 30%, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.4) 100%),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0.95) 90%);
   z-index: 1;
 }
 
@@ -278,17 +308,18 @@ a {
   text-align: left;
   max-width: 1220px;
   width: 100%;
-  margin-top: var(--header-h);
+  margin-top: 40px;
+  padding: 0 20px;
 }
 
 .hero-badge {
   display: inline-block;
   padding: 6px 16px;
-  background: var(--ppp-red);
-  color: #ffffff;
+  background: rgba(230, 30, 43, 0.1);
+  color: var(--ppp-red);
   font-size: 0.9rem;
   font-weight: 700;
-  border-radius: 4px;
+  border-radius: 6px;
   margin-bottom: 24px;
 }
 
@@ -301,21 +332,8 @@ a {
   font-weight: 800;
 }
 
-.text-highlight {
-  position: relative;
-  display: inline-block;
-  z-index: 1;
-}
-
 .text-highlight::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  bottom: 8px;
-  width: 100%;
-  height: 30%;
-  background: rgba(230, 30, 43, 0.12);
-  z-index: -1;
+  background: rgba(230, 30, 43, 0.08); /* 하이라이트 색상 더 연하게 */
 }
 
 .text-name {
@@ -1485,15 +1503,15 @@ a {
   }
 
   .brand-title {
-    font-size: 0.88rem;
+    font-size: 1rem;
   }
-  
+
   .brand-sub {
-    font-size: 0.58rem;
-    display: block;
+    font-size: 0.72rem; /* 모바일에서도 최소 이 정도 크기는 유지 */
+    font-weight: 600; /* 좀 더 두껍게 하여 시인성 보조 */
   }
 
   .party-logo {
-    height: 26px;
+    height: 30px;
   }
 }

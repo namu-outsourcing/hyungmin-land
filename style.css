@@ -486,7 +486,7 @@ a {
 
 @media (max-width: 1080px) {
   .hero {
-    height: 100vh; /* Prevent address bar from resizing container on scroll */
+    height: 100svh; /* Use svh (Small Viewport Height) to prevent jitter on mobile scroll */
     padding: 0;
     overflow: hidden;
     background:

@@ -1,10 +1,13 @@
 // Lock hero height on mobile to prevent resize jitter from address bar
-(function fixMobileHeroHeight() {
+function updateMobileHeroHeight() {
   if (window.innerWidth <= 1080) {
     const vh = window.innerHeight;
     document.documentElement.style.setProperty('--hero-h', vh + 'px');
+  } else {
+    document.documentElement.style.removeProperty('--hero-h');
   }
-})();
+}
+updateMobileHeroHeight();
 
 const root = document.documentElement;
 const header = document.querySelector('.site-header');
@@ -42,11 +45,7 @@ navLinks.forEach((link) => {
   });
 });
 
-window.addEventListener('resize', () => {
-  if (window.innerWidth > 1080) {
-    closeMenu();
-  }
-});
+// Consolidated resize handler at the bottom
 
 const activeObserver = new IntersectionObserver(
   (entries) => {
@@ -89,24 +88,7 @@ const revealObserver = new IntersectionObserver(
   }
 );
 
-// 히어로 섹션 마우스 패럴랙스 (PC 전용)
-const hero = document.querySelector('.hero');
-const circles = document.querySelectorAll('.hero-circle-1, .hero-circle-2');
-
-if (hero && circles.length && window.innerWidth > 1080) {
-  hero.addEventListener('mousemove', (e) => {
-    const { clientX, clientY } = e;
-    const centerX = window.innerWidth / 2;
-    const centerY = window.innerHeight / 2;
-    
-    circles.forEach((circle, index) => {
-      const factor = (index + 1) * 25;
-      const x = (clientX - centerX) / factor;
-      const y = (clientY - centerY) / factor;
-      circle.style.transform = `translate(${x}px, ${y}px)`;
-    });
-  });
-}
+// hero-circle parallax code removed (dead code as elements missing)
 
 revealTargets.forEach((target) => revealObserver.observe(target));
 
@@ -223,5 +205,15 @@ if (aboutSlider) {
   }
 }
 
+window.addEventListener('resize', () => {
+  updateMobileHeroHeight();
+  if (window.innerWidth > 1080) {
+    closeMenu();
+  }
+});
+
 window.addEventListener('scroll', setHeaderState, { passive: true });
+window.addEventListener('orientationchange', () => {
+  setTimeout(updateMobileHeroHeight, 100);
+});
 setHeaderState();

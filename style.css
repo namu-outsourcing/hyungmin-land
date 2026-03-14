@@ -45,19 +45,24 @@ a {
   top: 0;
   left: 0;
   right: 0;
-  z-index: 50;
-  background: rgba(8, 11, 18, 0.46);
-  backdrop-filter: blur(8px);
+  z-index: 1000;
+  background: transparent;
+  backdrop-filter: blur(0px);
+  padding: 24px 0;
   transition:
-    background-color 0.25s ease,
-    box-shadow 0.25s ease,
-    backdrop-filter 0.25s ease;
+    background-color 0.3s ease,
+    padding 0.3s ease,
+    backdrop-filter 0.3s ease,
+    box-shadow 0.3s ease;
 }
 
 .site-header.is-scrolled {
-  background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(8px);
+  background: rgba(255, 255, 255, 0.96);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  padding: 12px 0;
   box-shadow: 0 10px 30px rgba(16, 24, 40, 0.08);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
 }
 
 .header-inner {
@@ -80,23 +85,25 @@ a {
 
 .brand-title {
   font-family: "Montserrat", "Noto Sans KR", sans-serif;
-  font-size: clamp(0.98rem, 1.45vw, 1.26rem);
+  font-size: clamp(1rem, 1.45vw, 1.2rem);
   font-weight: 800;
   letter-spacing: 0.02em;
-  color: var(--white);
+  color: var(--black);
+  line-height: 1.2;
 }
 
 .brand-sub {
   font-size: clamp(0.66rem, 0.88vw, 0.78rem);
-  color: rgba(255, 255, 255, 0.9);
+  color: rgba(1, 1, 1, 0.9);
   white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  margin-top: 2px;
 }
 
-.site-header.is-scrolled .brand-title,
-.site-header.is-scrolled .brand-sub {
+.site-header.is-scrolled .brand-title {
   color: var(--ink);
+}
+.site-header.is-scrolled .brand-sub {
+  color: var(--muted);
 }
 
 .header-right {
@@ -197,25 +204,7 @@ a {
   transform: translateY(-7px) rotate(-45deg);
 }
 
-.site-header {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  z-index: 1000;
-  background: transparent;
-  border-bottom: 1px solid transparent;
-  transition: all 0.4s ease;
-  padding: 24px 0;
-}
-
-.site-header.is-scrolled {
-  background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(15px);
-  -webkit-backdrop-filter: blur(15px);
-  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-  padding: 12px 0;
-}
+/* Merged into lines 43-61 */
 
 .brand-wrap {
   display: flex;
@@ -239,40 +228,7 @@ a {
   display: block;
 }
 
-.brand-title {
-  font-size: 1.15rem;
-  font-weight: 500;
-  color: #121820; /* 다시 다크톤으로 가독성 확보 */
-  line-height: 1.2;
-}
-
-.brand-title strong {
-  font-weight: 500;
-  color: #121820;
-}
-
-.brand-title .highlight-name {
-  font-weight: 900;
-  color: #000000; /* 묵직한 블랙 */
-  font-size: 1.15em; /* 주변 텍스트보다 살짝 더 크게 */
-  letter-spacing: -0.02em;
-  margin-left: 2px;
-  display: inline-block;
-  vertical-align: middle;
-}
-
-/* 기존 빨간색 하이라이트 배경 제거 */
-.brand-title .highlight-name::after {
-  display: none;
-}
-
-.brand-sub {
-  font-size: 0.88rem;
-  font-weight: 500;
-  color: #4a515f;
-  margin-top: 3px;
-  letter-spacing: -0.01em;
-}
+/* Merged into lines 81-100 */
 
 .main-nav a {
   color: #121820 !important;
@@ -303,7 +259,11 @@ a {
 .blob-red-1 {
   width: 75vw;
   height: 75vw;
-  background: radial-gradient(circle, rgba(180, 15, 25, 0.35) 0%, transparent 70%);
+  background: radial-gradient(
+    circle,
+    rgba(180, 15, 25, 0.35) 0%,
+    transparent 70%
+  );
   top: -20%;
   left: -15%;
 }
@@ -486,20 +446,22 @@ a {
 
 @media (max-width: 1080px) {
   .hero {
-    height: var(--hero-h, 100svh); /* JS sets --hero-h on load; fallback to 100svh */
+    height: var(
+      --hero-h,
+      100svh
+    ); /* JS sets --hero-h on load; fallback to 100svh */
     padding: 0;
     overflow: hidden;
-    background:
-      linear-gradient(
-        180deg,
-        #ffffff 0%,
-        #ffffff 10%,
-        rgba(255, 255, 255, 0.95) 20%,
-        rgba(230, 30, 43, 0.15) 40%,
-        rgba(230, 30, 43, 0.45) 60%,
-        rgba(230, 30, 43, 0.8) 80%,
-        #e61e2b 100%
-      );
+    position: relative;
+    background: linear-gradient(
+      180deg,
+      #ffffff 0%,
+      rgba(255, 255, 255, 0.9) 10%,
+      rgba(230, 30, 43, 0.1) 30%,
+      rgba(230, 30, 43, 0.4) 50%,
+      rgba(230, 30, 43, 0.75) 80%,
+      #e61e2b 100%
+    );
   }
   .hero-container {
     position: relative;
@@ -510,11 +472,11 @@ a {
   /* 텍스트: 상단에서 충분히 띄움 (헤더 겹침 방지, 사진과 근접) */
   .hero-content {
     position: absolute;
-    top: 26%;
+    bottom: 8%; /* Position text over the lower part of the candidate */
     left: 0;
     width: 100%;
     padding: 0 24px;
-    text-align: left;
+    text-align: center;
     margin-top: 0;
     z-index: 10;
     background: none;
@@ -528,7 +490,8 @@ a {
     margin-bottom: 8px;
     white-space: normal;
     overflow: visible;
-    color: #333d4b; /* Dark, solid gray/black */
+    color: #ffffff;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
   }
   .hero-top-message::before {
     display: none;
@@ -536,17 +499,17 @@ a {
   .hero-main-slogan {
     font-size: 1.45rem;
     line-height: 1.35;
-    color: #121820;
-    text-shadow: none;
+    color: #ffffff;
+    text-shadow: 0 2px 15px rgba(0, 0, 0, 0.4);
     margin-bottom: 12px;
     word-break: keep-all;
     white-space: normal;
   }
   .hero-symbol {
     font-size: 3.2rem;
-    color: #ffd700; 
+    color: #ffd700;
     -webkit-text-stroke: 1.5px #ffffff; /* Smooth white outline */
-    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.15)); /* Soft shadow */
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.15)); /* Soft shadow */
     transform: none;
     line-height: 1;
   }
@@ -554,46 +517,59 @@ a {
     font-size: 2.5rem;
     transform: none;
     line-height: 1;
-    color: #121820;
-    text-shadow: none;
+    color: #ffffff;
+    text-shadow: 0 2px 15px rgba(0, 0, 0, 0.4);
   }
   .hero-suffix {
     font-size: 1.15rem;
     margin-top: 4px;
-    color: #121820;
-    text-shadow: none;
+    color: #ffffff;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
     white-space: nowrap;
   }
   .hero-identity {
     margin-bottom: 0;
   }
   .identity-primary {
-    justify-content: flex-start;
-    align-items: center; /* Changed from flex-end to center for better alignment */
+    justify-content: center;
+    align-items: center;
     gap: 8px;
   }
 
-  /* 이미지: 우측 하단 / 우측 잘림 방지 */
+  /* 이미지: 중앙 하단 배치 (옵션 A) */
   .hero-visual {
     opacity: 1 !important;
-    transform: none !important;
+    transform: translateX(-50%) !important;
     transition: none !important;
     position: absolute;
     bottom: 0;
-    right: -4%;
-    width: 85%;
-    height: 60%; /* Reduced from 65% to give text more room */
+    left: 50%;
+    width: 100%;
+    height: 75%; /* Increase height to reduce top empty space */
     display: flex;
-    justify-content: flex-end;
+    justify-content: center;
     align-items: flex-end;
     margin-right: 0;
     z-index: 5;
+  }
+  .hero-visual::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      to top,
+      rgba(0, 0, 0, 0.45) 0%,
+      rgba(0, 0, 0, 0.2) 25%,
+      transparent 60%
+    );
+    z-index: 6;
+    pointer-events: none;
   }
   .image-wrap {
     width: 100%;
     height: 100%;
     display: flex;
-    justify-content: flex-end;
+    justify-content: center;
     align-items: flex-end;
   }
   .hero-visual img {
@@ -601,42 +577,47 @@ a {
     width: auto;
     max-width: 100%;
     object-fit: contain;
-    object-position: bottom right;
+    object-position: bottom center;
     transform: none;
-    filter: drop-shadow(-8px 0 25px rgba(0, 0, 0, 0.15));
+    filter: drop-shadow(0 0 30px rgba(0, 0, 0, 0.12));
   }
 }
 
 @media (max-width: 760px) {
   .hero-content {
-    top: 22%; /* Moved text down to be closer to image */
+    bottom: 12%; /* Slightly adjusted for better visual balance with gradient */
     padding: 0 20px;
   }
   .hero-top-message {
-    font-size: 0.8rem;
-    margin-bottom: 6px;
+    font-size: 0.85rem;
+    margin-bottom: 8px;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
   }
   .hero-main-slogan {
-    font-size: 1.3rem;
-    margin-bottom: 10px;
+    font-size: 1.4rem;
+    margin-bottom: 12px;
+    text-shadow: 0 3px 6px rgba(0, 0, 0, 0.6);
   }
   .hero-symbol {
-    font-size: 3.5rem; /* Increased for better visibility */
-    color: #ffd700; /* Original yellow */
-    -webkit-text-stroke: 1.5px #ffffff; /* Smooth white outline */
-    filter: drop-shadow(0 2px 5px rgba(0,0,0,0.15)); /* Soft shadow for depth */
+    font-size: 3.8rem; /* Slightly larger for impact */
+    color: #ffd700;
+    -webkit-text-stroke: 2px #ffffff;
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.5));
     line-height: 1;
   }
   .hero-name {
-    font-size: 2.8rem; /* Increased for better visibility */
+    font-size: 3rem; /* Slightly larger for impact */
+    color: #ffffff;
+    text-shadow: 0 4px 12px rgba(0, 0, 0, 0.7);
   }
   .hero-suffix {
-    font-size: 1.3rem; /* Matched with .hero-main-slogan */
+    font-size: 1.4rem;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
   }
   .hero-visual {
-    width: 95%;
-    height: 55%; /* Reduced height for smaller screens */
-    right: -6%;
+    width: 100%;
+    height: 75%;
+    left: 50%;
   }
 }
 
@@ -690,49 +671,6 @@ a {
     transform: translate(-50%, 15px);
     opacity: 0;
   }
-}
-
-
-.btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  min-width: 136px;
-  height: 46px;
-  border-radius: 999px;
-  font-weight: 700;
-  font-size: 0.94rem;
-  transition:
-    transform 0.2s ease,
-    background-color 0.2s ease;
-}
-
-.btn:hover {
-  transform: translateY(-2px);
-}
-
-.btn-primary {
-  background: var(--ppp-red);
-  color: var(--white);
-  box-shadow: 0 10px 24px rgba(230, 30, 43, 0.35);
-}
-
-.btn-ghost {
-  background: rgba(255, 255, 255, 0.16);
-  border: 1px solid rgba(255, 255, 255, 0.44);
-  color: var(--white);
-}
-
-.scroll-down {
-  position: absolute;
-  bottom: 34px;
-  left: 50%;
-  width: 22px;
-  height: 22px;
-  border-right: 2px solid rgba(255, 255, 255, 0.9);
-  border-bottom: 2px solid rgba(255, 255, 255, 0.9);
-  transform: translateX(-50%) rotate(45deg);
-  animation: bounce 1.6s ease-in-out infinite;
 }
 
 @keyframes bounce {
@@ -1108,10 +1046,11 @@ a {
   padding: 28px;
   display: flex;
   flex-direction: column;
-  transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+  transition:
+    transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1),
+    box-shadow 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
 }
-
 
 .card-header {
   margin-bottom: 20px;
@@ -1192,7 +1131,6 @@ a {
   border-radius: 50%;
 }
 
-
 /* 레시피 클로징 멘트 (비전 그리드 6번째 카드) */
 .vision-footer {
   text-align: center;
@@ -1224,53 +1162,49 @@ a {
 
 /* 소통 채널 개편 */
 .contact-card {
-  max-width: 840px;
-  margin: 0 auto;
-  background: #ffffff;
-  padding: 80px 40px;
-  border-radius: 48px;
-  box-shadow: 0 40px 90px rgba(0, 0, 0, 0.06);
-  border: 1px solid #edf1f7;
+  background: var(--white);
+  padding: 60px 40px;
+  border-radius: 32px;
+  box-shadow: 0 20px 50px rgba(16, 24, 40, 0.08);
   text-align: center;
+  max-width: 800px;
+  margin: 0 auto;
 }
 
 .contact-card p {
-  font-size: 1.4rem;
-  color: #1a202c;
-  font-weight: 800;
+  font-size: 1.25rem;
+  color: var(--ink);
+  line-height: 1.65;
   margin-bottom: 48px;
+  word-break: keep-all;
 }
 
 .sns-links {
   display: flex;
   justify-content: center;
   gap: 24px;
+  flex-wrap: wrap;
 }
 
 .sns-links a {
-  display: inline-flex;
+  display: flex;
   align-items: center;
-  gap: 14px;
-  height: 72px;
-  padding: 0 40px;
-  background: #f8fafc;
-  color: #1a202c;
-  border-radius: 24px;
-  font-weight: 800;
-  font-size: 1.1rem;
-  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-}
-
-.sns-icon {
-  width: 32px;
-  height: 32px;
-  object-fit: contain;
+  gap: 12px;
+  padding: 16px 32px;
+  background: #f8f9fa;
+  border-radius: 20px;
+  font-weight: 700;
+  color: #121820;
+  transition:
+    background-color 0.2s ease,
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
 }
 
 .sns-links a:hover {
-  background: #121820;
-  color: #ffffff;
-  transform: translateY(-10px) scale(1.02);
+  background: #e9ecef;
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
 }
 
 @media (max-width: 1080px) {
@@ -1389,33 +1323,6 @@ a {
   background: #ffffff;
   text-align: center;
   padding-bottom: 120px;
-}
-
-.contact-card {
-  max-width: 800px;
-  margin: 0 auto;
-  background: linear-gradient(135deg, #ffffff 0%, #fcfdfe 100%);
-  padding: 60px 40px;
-  border: 1px solid #edf1f7;
-  border-radius: 32px;
-  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.06);
-  position: relative;
-  overflow: hidden;
-}
-
-.contact-card p {
-  font-size: 1.25rem;
-  color: #121820;
-  font-weight: 700;
-  line-height: 1.6;
-  margin-bottom: 34px;
-}
-
-.sns-links {
-  display: flex;
-  justify-content: center;
-  gap: 16px;
-  flex-wrap: wrap;
 }
 
 .sns-links a {

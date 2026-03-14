@@ -276,29 +276,8 @@ a {
 /* -------------------------------------------------------------------------- */
 /* 히어로 섹션 (Hero Section) */
 /* -------------------------------------------------------------------------- */
-.hero {
-  position: relative;
-  min-height: 100vh;
-  min-height: 100svh;
-  display: flex;
-  align-items: center;
-  /* 왼쪽 끝을 순수 #E61E2B 컬러로 시작하는 강렬한 고해상도 그라데이션 */
-  background:
-    linear-gradient(
-      90deg,
-      #e61e2b 0%,
-      rgba(230, 30, 43, 0.65) 15%,
-      rgba(230, 30, 43, 0.35) 35%,
-      rgba(230, 30, 43, 0.15) 60%,
-      rgba(230, 30, 43, 0.03) 85%,
-      rgba(255, 255, 255, 0) 100%
-    ),
-    #ffffff;
-  overflow: hidden;
-  padding: 0 24px;
-}
 
-/* 배경 장식 정돈 */
+/* 배경 장식 */
 .hero-bg-graphic {
   position: absolute;
   inset: 0;
@@ -309,7 +288,7 @@ a {
 .hero-blob {
   position: absolute;
   filter: blur(140px);
-  opacity: 0.65; /* 블롭 불투명도 대폭 상향 */
+  opacity: 0.65;
   border-radius: 50%;
   animation: blob-float 20s infinite alternate ease-in-out;
 }
@@ -317,11 +296,7 @@ a {
 .blob-red-1 {
   width: 75vw;
   height: 75vw;
-  background: radial-gradient(
-    circle,
-    rgba(180, 15, 25, 0.35) 0%,
-    transparent 70%
-  ); /* 더 깊은 레드 */
+  background: radial-gradient(circle, rgba(180, 15, 25, 0.35) 0%, transparent 70%);
   top: -20%;
   left: -15%;
 }
@@ -365,11 +340,9 @@ a {
 
 .hero {
   position: relative;
-  height: 100vh;
   height: 100svh;
   display: flex;
   align-items: stretch;
-  /* 왼쪽에서 오른쪽으로 퍼지는 강렬한 그라데이션 배경 */
   background:
     linear-gradient(
       90deg,
@@ -382,7 +355,6 @@ a {
     ),
     #ffffff;
   overflow: hidden;
-  /* 상단 헤더 공간 확실히 확보 */
   padding: var(--header-h) 24px 0;
   box-sizing: border-box;
 }
@@ -394,21 +366,19 @@ a {
   width: 100%;
   margin: 0 auto;
   display: flex;
-  align-items: flex-end; /* 모든 요소를 바닥에 정렬 */
+  align-items: flex-end;
   justify-content: space-between;
   height: 100%;
   box-sizing: border-box;
 }
 
-/* 히어로 텍스트 영역 (크기 및 위치 조정) */
 .hero-content {
   flex: 0 0 50%;
   padding-left: 40px;
   text-align: left;
   z-index: 10;
   align-self: center;
-  padding-bottom: 0;
-  margin-top: calc(var(--header-h) * 5); /* 헤더 높이만큼 시각적 중앙 보정 */
+  margin-top: 30vh;
 }
 
 .hero-top-message {
@@ -456,7 +426,7 @@ a {
 
 .hero-symbol {
   font-family: "Montserrat", sans-serif;
-  font-size: clamp(5rem, 10vw, 7.5rem); /* 크기 대폭 축소 */
+  font-size: clamp(5rem, 10vw, 7.5rem);
   font-weight: 800;
   color: #ffd700;
   line-height: 0.9;
@@ -468,7 +438,7 @@ a {
 }
 
 .hero-name {
-  font-size: clamp(3.5rem, 8vw, 6.5rem); /* 크기 대폭 축소 */
+  font-size: clamp(3.5rem, 8vw, 6.5rem);
   font-weight: 950;
   color: #121820;
   line-height: 0.9;
@@ -479,14 +449,13 @@ a {
 
 .hero-suffix {
   display: block;
-  font-size: clamp(1.6rem, 3.5vw, 2.6rem); /* 슬로건과 폰트 사이즈 통일 */
+  font-size: clamp(1.6rem, 3.5vw, 2.6rem);
   font-weight: 800;
   color: #121820;
   letter-spacing: -0.03em;
   margin-top: 4px;
 }
 
-/* 히어로 비주얼 영역 (이미지 크기 축소 및 바닥 밀착) */
 .hero-visual {
   flex: 0 0 50%;
   position: relative;
@@ -512,87 +481,137 @@ a {
   width: auto;
   height: auto;
   max-width: 100%;
-  max-height: calc(100vh - var(--header-h) - 80px); /* 헤더 + 여유 공간 확보 */
+  max-height: calc(100svh - var(--header-h) - 80px);
   display: block;
   object-fit: contain;
   object-position: bottom right;
   filter: drop-shadow(0 20px 80px rgba(0, 0, 0, 0.12));
-  transform: translateX(24px); /* 오른쪽으로 살짝 이동 */
+  transform: translateX(24px);
 }
 
 @media (max-width: 1080px) {
   .hero {
-    padding: var(--header-h) 20px 0;
     height: 100svh;
+    padding: var(--header-h) 0 0;
+    overflow: hidden;
+    background:
+      linear-gradient(
+        135deg,
+        #e61e2b 0%,
+        rgba(230, 30, 43, 0.65) 25%,
+        rgba(230, 30, 43, 0.15) 55%,
+        rgba(255, 255, 255, 0) 75%
+      ),
+      #ffffff;
   }
   .hero-container {
-    flex-direction: column;
-    text-align: center;
-    justify-content: flex-end;
-    align-items: center;
+    position: relative;
     height: 100%;
+    max-width: 100%;
   }
+
+  /* 텍스트: 좌측 상단 */
   .hero-content {
-    flex: 0 0 auto;
-    padding-left: 0;
-    margin-bottom: 0;
-    padding-bottom: 0;
-    align-self: auto;
+    position: absolute;
+    top: 12%;
+    left: 0;
+    width: 55%; /* 이미지 겹침 방지 */
+    padding: 0 20px;
+    text-align: left;
     margin-top: 0;
-    padding-top: 24px;
-    text-align: center;
+    z-index: 10;
+    background: none;
+    border-radius: 0;
   }
   .hero-top-message {
     padding-left: 0;
+    font-size: 0.75rem;
+    line-height: 1.5;
+    margin-bottom: 8px;
+    word-break: keep-all;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
   .hero-top-message::before {
     display: none;
   }
+  .hero-main-slogan {
+    font-size: 1.15rem;
+    line-height: 1.4;
+    color: #121820;
+    text-shadow: none;
+    margin-bottom: 12px;
+    word-break: keep-all;
+    white-space: nowrap;
+  }
+  .hero-symbol {
+    font-size: 2.6rem;
+    transform: none;
+    -webkit-text-stroke: 2px #ffffff;
+    line-height: 1;
+  }
+  .hero-name {
+    font-size: 2.2rem;
+    transform: none;
+    line-height: 1;
+    color: #121820;
+    text-shadow: none;
+  }
+  .hero-suffix {
+    font-size: 1.05rem;
+    margin-top: 4px;
+    color: #121820;
+    text-shadow: none;
+    white-space: nowrap;
+  }
+  .hero-identity {
+    margin-bottom: 0;
+  }
   .identity-primary {
-    justify-content: center;
+    justify-content: flex-start;
+    align-items: flex-end;
+    gap: 6px;
   }
 
+  /* 이미지: 우측 하단 / scroll-reveal 애니메이션 무력화 */
   .hero-visual {
-    flex: 1;
-    width: 100%;
-    max-width: 360px;
-    justify-content: center;
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 52%;
+    height: 62%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
     margin-right: 0;
-    align-self: flex-end;
-  }
-  .hero-visual img {
-    max-height: calc(100svh - var(--header-h) - 220px);
-    transform: none;
   }
   .image-wrap {
-    justify-content: center;
+    width: 100%;
+    height: 100%;
+    max-width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+  }
+  .hero-visual img {
+    height: 100%;
+    width: auto;
+    max-width: 100%;
+    object-fit: contain;
+    object-position: bottom right;
+    transform: none;
+    filter: drop-shadow(-6px 0 24px rgba(0, 0, 0, 0.1));
   }
 }
 
 @media (max-width: 760px) {
-  .hero-top-message {
-    font-size: 0.9rem;
-    margin-bottom: 8px;
-  }
-  .hero-main-slogan {
-    font-size: 1.4rem;
-    margin-bottom: 10px;
-  }
-  .hero-symbol {
-    font-size: 4.5rem;
-  }
-  .hero-name {
-    font-size: 3rem;
-  }
-  .hero-suffix {
-    font-size: 1.4rem;
-  }
   .hero-visual {
-    max-width: 240px;
-  }
-  .hero-visual img {
-    max-height: calc(100svh - var(--header-h) - 280px);
-    transform: none;
+    width: 50%;
+    height: 58%;
   }
 }
 
@@ -648,79 +667,6 @@ a {
   }
 }
 
-/* -------------------------------------------------------------------------- */
-/* 히어로 섹션 반응형 (Responsive Hero) */
-/* -------------------------------------------------------------------------- */
-@media (max-width: 1080px) {
-  .hero-container {
-    flex-direction: column;
-    text-align: center;
-    padding-top: calc(var(--header-h) + 40px);
-  }
-
-  .hero-content {
-    flex: 1;
-    margin-bottom: 40px;
-  }
-
-  .hero-actions {
-    justify-content: center;
-  }
-
-  .hero-visual {
-    flex: 0 0 auto;
-    width: 100%;
-    max-width: 480px;
-  }
-
-  .visual-bg-text {
-    top: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    font-size: 50vw;
-  }
-}
-
-@media (max-width: 760px) {
-  .hero {
-    padding-top: 60px;
-    align-items: flex-start;
-  }
-
-  .hero-badge {
-    font-size: 0.85rem;
-    margin-bottom: 20px;
-  }
-
-  .hero-title {
-    margin-bottom: 20px;
-  }
-
-  .hero-description {
-    margin-bottom: 32px;
-  }
-
-  .hero-actions {
-    flex-direction: column;
-    gap: 12px;
-  }
-
-  .btn {
-    width: 100%;
-    height: 56px;
-    font-size: 1.05rem;
-  }
-
-  .hero-visual {
-    margin-top: 20px;
-  }
-
-  .hero-scroll-indicator {
-    display: none;
-  }
-}
-
-/* 기존 히어로 관련 스타일을 찾아서 대체하기 위해 이 주석 아래로 기존 코드를 둡니다. */
 
 .btn {
   display: inline-flex;

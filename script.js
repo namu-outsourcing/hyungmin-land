@@ -1,3 +1,11 @@
+// Lock hero height on mobile to prevent resize jitter from address bar
+(function fixMobileHeroHeight() {
+  if (window.innerWidth <= 1080) {
+    const vh = window.innerHeight;
+    document.documentElement.style.setProperty('--hero-h', vh + 'px');
+  }
+})();
+
 const root = document.documentElement;
 const header = document.querySelector('.site-header');
 const nav = document.querySelector('.main-nav');

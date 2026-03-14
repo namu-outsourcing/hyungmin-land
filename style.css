@@ -486,7 +486,7 @@ a {
 
 @media (max-width: 1080px) {
   .hero {
-    height: 100svh; /* Use svh (Small Viewport Height) to prevent jitter on mobile scroll */
+    height: var(--hero-h, 100svh); /* JS sets --hero-h on load; fallback to 100svh */
     padding: 0;
     overflow: hidden;
     background:

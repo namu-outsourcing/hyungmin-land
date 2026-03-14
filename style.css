@@ -522,19 +522,25 @@ a {
 
 @media (max-width: 1080px) {
   .hero {
-    padding-top: var(--header-h);
+    padding: var(--header-h) 20px 0;
+    height: 100svh;
   }
   .hero-container {
     flex-direction: column;
     text-align: center;
     justify-content: flex-end;
+    align-items: center;
     height: 100%;
   }
   .hero-content {
     flex: 0 0 auto;
     padding-left: 0;
-    margin-bottom: 40px;
+    margin-bottom: 0;
     padding-bottom: 0;
+    align-self: auto;
+    margin-top: 0;
+    padding-top: 24px;
+    text-align: center;
   }
   .hero-top-message {
     padding-left: 0;
@@ -549,31 +555,44 @@ a {
   .hero-visual {
     flex: 1;
     width: 100%;
-    max-width: 450px;
+    max-width: 360px;
     justify-content: center;
+    margin-right: 0;
+    align-self: flex-end;
   }
   .hero-visual img {
-    max-height: 100%;
+    max-height: calc(100svh - var(--header-h) - 220px);
+    transform: none;
+  }
+  .image-wrap {
+    justify-content: center;
   }
 }
 
 @media (max-width: 760px) {
   .hero-top-message {
-    font-size: 0.95rem;
-    margin-bottom: 10px;
+    font-size: 0.9rem;
+    margin-bottom: 8px;
   }
   .hero-main-slogan {
-    font-size: 1.5rem;
-    margin-bottom: 12px;
+    font-size: 1.4rem;
+    margin-bottom: 10px;
   }
   .hero-symbol {
-    font-size: 5rem;
+    font-size: 4.5rem;
   }
   .hero-name {
-    font-size: 3.5rem;
+    font-size: 3rem;
   }
   .hero-suffix {
-    font-size: 1.6rem;
+    font-size: 1.4rem;
+  }
+  .hero-visual {
+    max-width: 240px;
+  }
+  .hero-visual img {
+    max-height: calc(100svh - var(--header-h) - 280px);
+    transform: none;
   }
 }
 
@@ -1646,28 +1665,6 @@ a {
     font-size: 0.62rem;
   }
 
-  .hero-container {
-    flex-direction: column;
-    text-align: center;
-    gap: 40px;
-  }
-
-  .hero-visual {
-    flex: 0 0 auto;
-    max-width: 280px; /* 320px에서 축소 */
-    margin: 0 auto;
-  }
-
-  .hero-content {
-    text-align: center;
-    padding: 0 10px;
-  }
-
-  .hero-description {
-    margin: 0 auto 34px;
-    font-size: 1.1rem;
-  }
-
   .hero-btns {
     justify-content: center;
   }
@@ -1761,7 +1758,7 @@ a {
   }
 
   .section {
-    padding: 60px 20px;
+    padding: 48px 20px;
   }
 
   .section-title-wrap {
@@ -1779,138 +1776,15 @@ a {
   }
 
   /* 히어로 섹션 모바일 최적화 */
-  .hero {
-    min-height: 100svh;
-    padding: calc(var(--header-h) + 60px) 20px 60px; /* 더 큰 여백으로 얼굴 가림 확실히 방지 */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .hero-bg {
-    background-position: 55% 15%; /* 인물을 위쪽으로 배치하여 얼굴 확보 */
-    transform: scale(1.1);
-  }
-
-  .hero-overlay {
-    background: linear-gradient(
-      to top,
-      #ffffff 0%,
-      rgba(255, 255, 255, 0.95) 25%,
-      rgba(255, 255, 255, 0) 50%
-    );
-  }
-
-  .hero-container {
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    padding: 20px 0 0; /* 하단 공간은 브랜딩 푸터가 차지 */
-    gap: 0;
-  }
-
-  .hero-visual {
-    order: 2;
-    width: 100%;
-    max-width: 200px; /* 크기 소폭 확대 */
-    margin: 30px auto 0;
-    position: relative;
-  }
-
   .hero-main-slogan {
     width: 100%;
     max-width: 100%;
-    margin-bottom: 30px;
+    margin-bottom: 10px;
     z-index: 10;
   }
 
-  .hero-title {
-    font-size: 1.8rem;
-    line-height: 1.25;
-    text-align: center;
-    margin-bottom: 16px;
-  }
-
-  .hero-description {
-    font-size: 0.95rem;
-    line-height: 1.6;
-    margin-bottom: 24px;
-    color: #4a515f;
-  }
-
-  .hero-visual {
-    position: relative;
-    width: 80%;
-    max-width: 300px;
-    right: auto;
-    bottom: auto;
-    margin: 0 auto 20px;
-    z-index: 5;
-  }
-
-  .hero-branding-footer {
-    position: relative;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0;
-    margin-top: 20px;
-    padding: 20px 20px;
-    z-index: 10;
-  }
-
-  .branding-number {
-    font-size: 6rem;
-    line-height: 0.8;
-    margin-top: -10px;
-    opacity: 0.4;
-  }
-
-  .branding-name {
-    font-size: 3rem;
-    line-height: 1;
-    margin-top: -20px;
-    -webkit-text-stroke: 1.5px #fff;
-  }
-
-  .hero-accent {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 15vh;
-    background: linear-gradient(
-      to right,
-      #edb19d 0%,
-      #f18070 50%,
-      #e5554f 100%
-    );
-    z-index: 1;
-  }
-
-  .btn-main,
-  .btn-sub {
-    flex: 1;
-    height: 52px;
-    font-size: 0.9rem; /* 폰트 크기 소폭 축소하여 한 줄 확보 */
-    padding: 0 10px; /* 내부 패딩 축소 */
-    border-radius: 12px;
-    white-space: nowrap; /* 절대 줄바꿈 금지 */
-    letter-spacing: -0.02em; /* 자간 축소로 공간 확보 */
-  }
-
-  /* 더 좁은 화면 대응 */
-  @media (max-width: 360px) {
-    .btn-main,
-    .btn-sub {
-      font-size: 0.82rem;
-      padding: 0 6px;
-    }
-  }
-
-  .hero-scroll {
-    bottom: 20px;
+  .hero-scroll-indicator {
+    display: none;
   }
 
   .section-about .section-title-wrap,
@@ -2019,6 +1893,13 @@ a {
     line-height: 1.6;
   }
 
+  /* 비전 푸터 모바일 */
+  .vision-footer {
+    margin-top: 24px;
+    padding: 28px 20px;
+    border-radius: 20px;
+  }
+
   /* 연락처 섹션 모바일 최적화 */
   .contact-card {
     padding: 34px 20px;
@@ -2027,22 +1908,28 @@ a {
   }
 
   .contact-card p {
-    font-size: 1.05rem;
-    margin-bottom: 24px;
+    font-size: 1rem;
+    margin-bottom: 20px;
   }
 
   .sns-links {
     flex-direction: column;
-    gap: 8px;
+    gap: 10px;
     width: 100%;
   }
 
   .sns-links a {
     width: 100%;
-    height: 48px;
-    font-size: 0.92rem;
-    padding: 0;
+    height: 52px;
+    font-size: 1rem;
+    padding: 0 20px;
     justify-content: center;
+    gap: 10px;
+  }
+
+  .sns-icon {
+    width: 24px;
+    height: 24px;
   }
 
   .site-footer {

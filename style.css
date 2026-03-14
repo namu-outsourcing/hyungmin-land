@@ -221,6 +221,13 @@ a {
   display: flex;
   align-items: center;
   gap: 12px;
+  min-width: 0;
+}
+
+.brand-text {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
 }
 
 .party-logo {
@@ -420,9 +427,9 @@ a {
   line-height: 0.9;
   letter-spacing: -0.05em;
   transform: translateY(6px);
-  -webkit-text-stroke: 4px #ffffff;
+  -webkit-text-stroke: 3px #ffffff; /* Smooth white outline */
   paint-order: stroke fill;
-  filter: drop-shadow(0 10px 30px rgba(0, 0, 0, 0.15));
+  filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.1)); /* Soft shadow */
 }
 
 .hero-name {
@@ -480,17 +487,19 @@ a {
 @media (max-width: 1080px) {
   .hero {
     height: 100svh;
-    padding: var(--header-h) 0 0;
+    padding: 0;
     overflow: hidden;
     background:
       linear-gradient(
-        135deg,
-        #e61e2b 0%,
-        rgba(230, 30, 43, 0.65) 25%,
-        rgba(230, 30, 43, 0.15) 55%,
-        rgba(255, 255, 255, 0) 75%
-      ),
-      #ffffff;
+        180deg,
+        #ffffff 0%,
+        #ffffff 10%,
+        rgba(255, 255, 255, 0.95) 20%,
+        rgba(230, 30, 43, 0.15) 40%,
+        rgba(230, 30, 43, 0.45) 60%,
+        rgba(230, 30, 43, 0.8) 80%,
+        #e61e2b 100%
+      );
   }
   .hero-container {
     position: relative;
@@ -498,13 +507,13 @@ a {
     max-width: 100%;
   }
 
-  /* 텍스트: 좌측 상단 */
+  /* 텍스트: 상단에서 충분히 띄움 (헤더 겹침 방지, 사진과 근접) */
   .hero-content {
     position: absolute;
-    top: 12%;
+    top: 26%;
     left: 0;
-    width: 55%; /* 이미지 겹침 방지 */
-    padding: 0 20px;
+    width: 100%;
+    padding: 0 24px;
     text-align: left;
     margin-top: 0;
     z-index: 10;
@@ -513,41 +522,43 @@ a {
   }
   .hero-top-message {
     padding-left: 0;
-    font-size: 0.75rem;
+    font-size: 0.85rem;
+    font-weight: 700;
     line-height: 1.5;
     margin-bottom: 8px;
-    word-break: keep-all;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    white-space: normal;
+    overflow: visible;
+    color: #333d4b; /* Dark, solid gray/black */
   }
   .hero-top-message::before {
     display: none;
   }
   .hero-main-slogan {
-    font-size: 1.15rem;
-    line-height: 1.4;
+    font-size: 1.45rem;
+    line-height: 1.35;
     color: #121820;
     text-shadow: none;
     margin-bottom: 12px;
     word-break: keep-all;
-    white-space: nowrap;
+    white-space: normal;
   }
   .hero-symbol {
-    font-size: 2.6rem;
+    font-size: 3.2rem;
+    color: #ffd700; 
+    -webkit-text-stroke: 1.5px #ffffff; /* Smooth white outline */
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.15)); /* Soft shadow */
     transform: none;
-    -webkit-text-stroke: 2px #ffffff;
     line-height: 1;
   }
   .hero-name {
-    font-size: 2.2rem;
+    font-size: 2.5rem;
     transform: none;
     line-height: 1;
     color: #121820;
     text-shadow: none;
   }
   .hero-suffix {
-    font-size: 1.05rem;
+    font-size: 1.15rem;
     margin-top: 4px;
     color: #121820;
     text-shadow: none;
@@ -558,29 +569,29 @@ a {
   }
   .identity-primary {
     justify-content: flex-start;
-    align-items: flex-end;
-    gap: 6px;
+    align-items: center; /* Changed from flex-end to center for better alignment */
+    gap: 8px;
   }
 
-  /* 이미지: 우측 하단 / scroll-reveal 애니메이션 무력화 */
+  /* 이미지: 우측 하단 / 우측 잘림 방지 */
   .hero-visual {
     opacity: 1 !important;
     transform: none !important;
     transition: none !important;
     position: absolute;
     bottom: 0;
-    right: 0;
-    width: 52%;
-    height: 62%;
+    right: -4%;
+    width: 85%;
+    height: 60%; /* Reduced from 65% to give text more room */
     display: flex;
     justify-content: flex-end;
     align-items: flex-end;
     margin-right: 0;
+    z-index: 5;
   }
   .image-wrap {
     width: 100%;
     height: 100%;
-    max-width: 100%;
     display: flex;
     justify-content: flex-end;
     align-items: flex-end;
@@ -592,14 +603,40 @@ a {
     object-fit: contain;
     object-position: bottom right;
     transform: none;
-    filter: drop-shadow(-6px 0 24px rgba(0, 0, 0, 0.1));
+    filter: drop-shadow(-8px 0 25px rgba(0, 0, 0, 0.15));
   }
 }
 
 @media (max-width: 760px) {
+  .hero-content {
+    top: 22%; /* Moved text down to be closer to image */
+    padding: 0 20px;
+  }
+  .hero-top-message {
+    font-size: 0.8rem;
+    margin-bottom: 6px;
+  }
+  .hero-main-slogan {
+    font-size: 1.3rem;
+    margin-bottom: 10px;
+  }
+  .hero-symbol {
+    font-size: 3.5rem; /* Increased for better visibility */
+    color: #ffd700; /* Original yellow */
+    -webkit-text-stroke: 1.5px #ffffff; /* Smooth white outline */
+    filter: drop-shadow(0 2px 5px rgba(0,0,0,0.15)); /* Soft shadow for depth */
+    line-height: 1;
+  }
+  .hero-name {
+    font-size: 2.8rem; /* Increased for better visibility */
+  }
+  .hero-suffix {
+    font-size: 1.3rem; /* Matched with .hero-main-slogan */
+  }
   .hero-visual {
-    width: 50%;
-    height: 58%;
+    width: 95%;
+    height: 55%; /* Reduced height for smaller screens */
+    right: -6%;
   }
 }
 
@@ -769,20 +806,7 @@ a {
 }
 
 .section-about h2 {
-  position: relative;
   display: inline-block;
-  padding-right: 72px;
-}
-
-.section-about h2::after {
-  content: "";
-  position: absolute;
-  bottom: 8px; /* 아래쪽으로 이동 */
-  left: 0;
-  width: 100%; /* 전체 너비 강조 */
-  height: 8px; /* 형광펜 느낌 두께 */
-  background: rgba(230, 30, 43, 0.08); /* 연한 빨간색 강조 */
-  z-index: -1;
 }
 
 .about-grid {
@@ -1088,12 +1112,6 @@ a {
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
 }
 
-.vision-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 16px 40px rgba(230, 30, 43, 0.1);
-  border-color: rgba(230, 30, 43, 0.35);
-  border-top-color: var(--ppp-red);
-}
 
 .card-header {
   margin-bottom: 20px;
@@ -1174,37 +1192,18 @@ a {
   border-radius: 50%;
 }
 
-.vision-card:hover .vision-list li::before {
-  background: var(--ppp-red);
-}
 
-/* 레시피 클로징 멘트 */
+/* 레시피 클로징 멘트 (비전 그리드 6번째 카드) */
 .vision-footer {
-  margin-top: 40px;
   text-align: center;
-  padding: 40px 40px;
-  background: #ffffff;
-  border-radius: 32px;
-  max-width: 900px;
-  margin-left: auto;
-  margin-right: auto;
-  border: 1px solid #edf2f7;
   display: flex;
   flex-direction: column;
   align-items: center;
-}
-
-.recipe-icon {
-  width: 64px;
-  height: 64px;
-  margin-bottom: 24px;
-  stroke: var(--ppp-red);
-  stroke-width: 1.5;
-  fill: none;
+  justify-content: center;
 }
 
 .recipe-text {
-  font-size: clamp(1.4rem, 3vw, 1.8rem);
+  font-size: 1.15rem;
   line-height: 1.4;
   color: #1a202c;
   font-weight: 800;
@@ -1214,14 +1213,13 @@ a {
 .coming-soon {
   display: block;
   font-family: "Montserrat", sans-serif;
-  font-size: 2.4rem;
+  font-size: 1.3rem;
   font-weight: 950;
   color: #e61e2b;
-  margin-top: 16px;
+  margin-top: 12px;
   letter-spacing: 0.05em;
   text-transform: uppercase;
   font-style: italic;
-  opacity: 1;
 }
 
 /* 소통 채널 개편 */
@@ -1279,19 +1277,11 @@ a {
   .vision-grid {
     grid-template-columns: repeat(2, 1fr);
   }
-  .vision-card:last-child {
-    grid-column: span 2;
-    max-width: 500px;
-    margin: 0 auto;
-  }
 }
 
 @media (max-width: 760px) {
   .vision-grid {
     grid-template-columns: 1fr;
-  }
-  .vision-card:last-child {
-    grid-column: span 1;
   }
   .sns-links {
     flex-direction: column;
@@ -1873,29 +1863,29 @@ a {
 }
 
 @media (max-width: 480px) {
-  .hero-title {
-    font-size: 1.85rem;
-  }
-
   .brand-wrap {
-    max-width: calc(100% - 60px);
+    min-width: 0;
+    flex: 1;
   }
 
   .brand-title {
-    font-size: 1rem;
+    font-size: 0.9rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
   .brand-sub {
-    font-size: 0.72rem; /* 모바일에서도 최소 이 정도 크기는 유지 */
-    font-weight: 600; /* 좀 더 두껍게 하여 시인성 보조 */
+    font-size: 0.62rem;
+    line-height: 1.4;
+    word-break: keep-all;
+    white-space: normal;
   }
 
   .party-logo {
-    height: 42px; /* 모바일 전 단계에서 시원한 크기 유지 */
-    width: 145px;
+    flex-shrink: 0;
+    height: 38px;
+    width: 125px;
     object-position: center top;
-    background: transparent;
-    padding: 0;
-    box-shadow: none;
   }
 }

@@ -466,7 +466,11 @@ a {
   color: #0a0a0a;
   margin-bottom: 40px;
   text-align: left;
-  line-height: 1.6;
+  line-height: 1.4; /* 2줄 구조에 맞게 살짝 축소 */
+}
+
+.mobile-only-br {
+  display: none;
 }
 
 .hero-top-message .message-phrase {
@@ -511,7 +515,7 @@ a {
 }
 
 .slogan-line {
-  font-size: 3.2rem;
+  font-size: 2.2rem;
   font-weight: 800;
   color: #070606;
   line-height: 1.2;
@@ -545,7 +549,7 @@ a {
 }
 
 .hero-suffix {
-  font-size: 3.2rem;
+  font-size: 2.2rem;
   color: #000000;
   font-weight: 700;
   margin-left: 12px;
@@ -1725,6 +1729,12 @@ a {
 
   .hero-btns {
     justify-content: center;
+  }
+
+  .mobile-only-br {
+    display: block;
+    content: "";
+    margin-bottom: 0.25em;
   }
 
   .about-header {

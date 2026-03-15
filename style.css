@@ -1544,11 +1544,6 @@ a {
   padding-bottom: 120px;
 }
 
-.sns-icon {
-  width: 24px;
-  height: 24px;
-}
-
 .sns-links a {
   display: inline-flex;
   align-items: center;
@@ -1696,6 +1691,7 @@ a {
 
   .menu-toggle {
     display: block;
+    margin-top: -10px; /* 살짝 위로 올림 */
   }
 
   .party-logo {

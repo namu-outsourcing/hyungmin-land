@@ -791,7 +791,7 @@ a {
     display: flex;
     flex-direction: column;
     align-items: flex-end; /* "2 홍길동" 처럼 시각적 무게를 위해 조절 가능, 필요시 수정 */
-    margin-top: 250px;
+    margin-top: 215px;
     margin-bottom: 0;
   }
   .hero-main-slogan {

@@ -339,109 +339,73 @@ a {
   box-sizing: border-box;
 }
 
-.hero-content {
-  flex: 0 0 50%;
-  padding-left: 40px;
-  text-align: left;
-  z-index: 10;
-  align-self: center;
-  margin-top: 30vh;
-}
-
-.hero-top-message {
-  font-size: 1.1rem;
-  line-height: 1.5;
-  color: #ffffff;
-  font-weight: 500;
-  margin-bottom: 12px;
-  letter-spacing: -0.02em;
-  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-}
-
-.hero-main-slogan {
-  font-size: clamp(1.6rem, 3.5vw, 2.6rem);
-  line-height: 1.3;
-  color: #121820;
-  font-weight: 800;
-  margin-bottom: 12px;
-  letter-spacing: -0.04em;
-  word-break: keep-all;
-}
-
-/* 기호 + 이름 영역 (글자 크기 축소) */
-.hero-identity {
-  margin-bottom: 4px;
-}
-
-.identity-primary {
-  display: flex;
-  align-items: flex-end;
-  gap: 12px;
-}
-
-.hero-symbol {
-  font-family: "Montserrat", sans-serif;
-  font-size: clamp(5rem, 10vw, 7.5rem);
-  font-weight: 800;
-  color: #ffd700;
-  line-height: 0.9;
-  letter-spacing: -0.05em;
-  transform: translateY(6px);
-  -webkit-text-stroke: 3px #ffffff; /* Smooth white outline */
-  paint-order: stroke fill;
-  filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.1)); /* Soft shadow */
-}
-
-.hero-name {
-  font-size: clamp(3.5rem, 8vw, 6.5rem);
-  font-weight: 950;
-  color: #121820;
-  line-height: 0.9;
-  letter-spacing: -0.05em;
-  transform: translateY(-8px);
+.hero {
   position: relative;
+  height: 100svh;
+  width: 100%;
+  overflow: hidden;
+  background-color: #e2e8f0; /* 밝은 프리미엄 그레이 */
+  background-image: radial-gradient(
+    circle at 50% 45%,
+    #f8fafc 0%,
+    #e2e8f0 70%
+  ); /* 머리 뒤쪽 광원 효과 */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #1e293b;
 }
 
-.hero-suffix {
-  display: block;
-  font-size: clamp(1.6rem, 3.5vw, 2.6rem);
-  font-weight: 800;
-  color: #121820;
-  letter-spacing: -0.03em;
-  margin-top: 4px;
+.hero-content {
+  position: relative;
+  z-index: 30; /* 텍스트가 인물 사진(z-index: 20) 위로 오게 상향 */
+  width: 100%;
+  height: 100%;
+  max-width: 1240px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start; /* flex-start로 변경 */
+  padding: 120px 40px 60px; /* 데스크탑 상단 패딩 상향 */
+  box-sizing: border-box;
 }
 
 .hero-visual {
-  flex: 0 0 50%;
-  position: relative;
+  position: absolute;
+  inset: 0;
   display: flex;
-  justify-content: flex-end;
+  justify-content: center;
   align-items: flex-end;
-  height: 100%;
-  margin-right: -24px; /* 우측 패딩 상쇄하여 화면 엣지까지 확장 */
-}
-
-.image-wrap {
-  position: relative;
-  z-index: 2;
-  width: 100%;
-  max-width: 760px;
-  display: flex;
-  align-items: flex-end;
-  justify-content: flex-end;
-  height: 100%;
+  z-index: 20; /* 텍스트보다 위로 배치하여 인물이 글자 앞에 오도록 함 */
+  pointer-events: none; /* 클릭 이벤트가 뒤쪽 링크 등에 전달되도록 설정 */
 }
 
 .hero-visual img {
+  height: 90svh; /* 인물 사진을 조금 더 크게 */
   width: auto;
-  height: auto;
-  max-width: 100%;
-  max-height: calc(100svh - var(--header-h) - 80px);
-  display: block;
+  max-width: none;
   object-fit: contain;
-  object-position: bottom right;
-  filter: drop-shadow(0 20px 80px rgba(0, 0, 0, 0.12));
-  transform: translateX(24px);
+  object-position: bottom center;
+  filter: contrast(1.02) brightnessㄴ(1.02);
+}
+
+.hero-bottom-group {
+  order: 1; /* 상단 배치 */
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  z-index: 10;
+  margin-top: 30px;
+}
+.hero-top-message {
+  order: 2; /* 하단 배치 */
+  margin-top: auto;
+  font-size: 1.25rem;
+  line-height: 1.6;
+  color: #1e293b;
+  text-align: center;
+  width: 100%;
 }
 
 @media (max-width: 1080px) {
@@ -472,26 +436,35 @@ a {
   /* 텍스트: 상단에서 충분히 띄움 (헤더 겹침 방지, 사진과 근접) */
   .hero-content {
     position: absolute;
-    bottom: 8%; /* Position text over the lower part of the candidate */
+    bottom: 5%;
     left: 0;
     width: 100%;
-    padding: 0 24px;
+    padding: 100px 24px 0; /* 상단 패딩 상향 */
     text-align: center;
     margin-top: 0;
-    z-index: 10;
+    z-index: 30;
     background: none;
     border-radius: 0;
+    display: flex;
+    flex-direction: column;
   }
   .hero-top-message {
-    padding-left: 0;
-    font-size: 0.85rem;
+    position: absolute;
+    top: -50svh; /* 머리 오른쪽 공간에 배치 */
+    right: 24px;
+    width: auto;
+    font-size: 1.1rem;
     font-weight: 700;
     line-height: 1.5;
-    margin-bottom: 8px;
+    margin: 0;
     white-space: normal;
-    overflow: visible;
-    color: #ffffff;
-    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+    color: #121820;
+    text-shadow: none;
+    word-break: keep-all;
+    text-align: right; /* 머리 오른쪽에 있으므로 우측 정렬 유지 */
+    padding: 0;
+    z-index: 30; /* 인물보다 위로 배치 */
+    max-width: 200px;
   }
   .hero-top-message::before {
     display: none;
@@ -504,6 +477,7 @@ a {
     margin-bottom: 12px;
     word-break: keep-all;
     white-space: normal;
+    text-align: center; /* 다시 중앙 정렬 */
   }
   .hero-symbol {
     font-size: 3.2rem;
@@ -531,7 +505,7 @@ a {
     margin-bottom: 0;
   }
   .identity-primary {
-    justify-content: center;
+    justify-content: center; /* 다시 중앙 정렬 */
     align-items: center;
     gap: 8px;
   }
@@ -539,21 +513,21 @@ a {
   /* 이미지: 중앙 하단 배치 (옵션 A) */
   .hero-visual {
     opacity: 1 !important;
-    transform: translateX(-50%) !important;
+    transform: translateX(-50%) !important; /* 다시 중앙 배치 */
     transition: none !important;
     position: absolute;
     bottom: 0;
     left: 50%;
     width: 100%;
-    height: 75%; /* Increase height to reduce top empty space */
+    height: 72%;
     display: flex;
     justify-content: center;
     align-items: flex-end;
     margin-right: 0;
-    z-index: 5;
+    z-index: 20; /* 텍스트보다 위로 */
   }
   .hero-visual::after {
-    content: '';
+    content: "";
     position: absolute;
     inset: 0;
     background: linear-gradient(
@@ -562,7 +536,7 @@ a {
       rgba(0, 0, 0, 0.2) 25%,
       transparent 60%
     );
-    z-index: 6;
+    z-index: 21;
     pointer-events: none;
   }
   .image-wrap {
@@ -584,40 +558,137 @@ a {
 }
 
 @media (max-width: 760px) {
+  .hero {
+    background-image: radial-gradient(
+      circle at 50% 40%,
+      #ffffff 0%,
+      #cbd5e1 100%
+    );
+    background-color: #cbd5e1;
+  }
   .hero-content {
-    bottom: 12%; /* Slightly adjusted for better visual balance with gradient */
-    padding: 0 20px;
+    padding: 140px 24px 40px; /* 헤더 겹침 방지를 위해 상단 패딩 대폭 상향 */
+    position: relative;
+    z-index: 30;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    height: 100svh;
   }
   .hero-top-message {
-    font-size: 0.85rem;
-    margin-bottom: 8px;
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
+    order: 1; /* 상단 좌측 배치 */
+    position: relative;
+    top: auto;
+    right: auto;
+    font-size: 1.15rem;
+    line-height: 1.6;
+    text-align: left;
+    color: #1a1a1a;
+    width: 100%;
+    margin-top: 80px;
+    margin-bottom: auto; /* 아래 요소 밀어냄 */
+    padding: 0;
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    z-index: 30;
+  }
+  .hero-top-message strong {
+    font-weight: 800;
+    color: #e61e2b;
+  }
+  .message-phrase {
+    /* display: block; */
+    margin-bottom: 2px;
+    font-weight: 700;
+    white-space: nowrap;
+    line-height: 1.3;
+  }
+  .highlight-text {
+    font-weight: 900;
+    margin-top: 14px;
+    font-size: 1.4rem;
+    color: #172b5a;
+    display: block;
+    white-space: nowrap;
+  }
+  .hero-bottom-group {
+    order: 2; /* 하단 배치 */
+    position: relative;
+    width: 100%;
+    padding: 0 0 20px 0;
+    z-index: 30;
+    text-align: right; /* 시안처럼 우측 하단 정렬 느낌 혹은 전체를 채우는 느낌 */
+    background: none;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end; /* "2 홍길동" 처럼 시각적 무게를 위해 조절 가능, 필요시 수정 */
+    margin-top: auto;
+    margin-bottom: 0;
   }
   .hero-main-slogan {
-    font-size: 1.4rem;
-    margin-bottom: 12px;
-    text-shadow: 0 3px 6px rgba(0, 0, 0, 0.6);
+    font-size: 1.25rem;
+    margin-bottom: 5px;
+    border-bottom: none;
+    display: inline-block;
+    color: #172b5a;
+    font-weight: 800;
+    text-align: right;
+  }
+  .hero-identity {
+    position: relative;
+    width: 100%;
+    margin-top: 2px;
+  }
+  .identity-primary {
+    justify-content: flex-end; /* 우측 정렬 */
+    align-items: baseline;
+    gap: 8px;
   }
   .hero-symbol {
-    font-size: 3.8rem; /* Slightly larger for impact */
-    color: #ffd700;
-    -webkit-text-stroke: 2px #ffffff;
-    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.5));
-    line-height: 1;
+    font-size: 7.5rem; /* 더 크게 압도적으로 */
+    /* color: #172b5a; 파란색 계열 (시안 참고) */
+    font-weight: 900;
+    -webkit-text-stroke: none; /* 외곽선 제거 */
+    text-shadow: none;
+    line-height: 0.8;
   }
   .hero-name {
-    font-size: 3rem; /* Slightly larger for impact */
-    color: #ffffff;
-    text-shadow: 0 4px 12px rgba(0, 0, 0, 0.7);
+    font-size: 5rem; /* 이름도 크게 */
+    line-height: 0.85;
+    color: #ffffff; /* 흰색 글씨 */
+    font-weight: 900;
+    text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3); /* 배경에 묻히지 않도록 그림자 부여 */
   }
   .hero-suffix {
-    font-size: 1.4rem;
-    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
+    display: none; /* "이 뜁니다" 시안에 없으므로 모바일에서 숨김 */
   }
   .hero-visual {
+    z-index: 20; /* 텍스트보다 위 */
+    position: absolute;
+    top: auto !important;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    transform: none !important;
     width: 100%;
-    height: 75%;
-    left: 50%;
+    height: 55svh;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+  }
+  .hero-visual img {
+    height: 100%;
+    width: auto;
+    max-width: 100%;
+    max-height: 520px;
+    object-fit: contain;
+    object-position: bottom center;
+    margin-top: 0;
+    transform: none !important;
+    filter: drop-shadow(0 0 30px rgba(0, 0, 0, 0.08));
   }
 }
 
@@ -1791,8 +1862,9 @@ a {
 
   .party-logo {
     flex-shrink: 0;
-    height: 38px;
+    height: 30px;
     width: 125px;
     object-position: center top;
+    margin-top: -8px; /* Shift logo slightly upwards */
   }
 }

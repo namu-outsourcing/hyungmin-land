@@ -488,8 +488,8 @@ a {
 }
 
 .hero-top-message .highlight-navy {
-  color: #172b5a;
-  font-weight: 900;
+  color: #000000;
+  /* font-weight: 900; */
   font-size: 1.35rem; /* 데스크탑에서도 강조를 위해 살짝 크게 */
 }
 
@@ -497,7 +497,10 @@ a {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  margin-top: 10px;
+  margin-top: 10px; /* 마진은 원래대로 복구하여 상단 메시지 위치를 고정 */
+  transform: translateY(
+    30px
+  ); /* 레이아웃에 영향을 주지 않고 시각적으로만 30px 내림 */
 }
 
 .hero-main-slogan {
@@ -1542,6 +1545,11 @@ a {
   background: #ffffff;
   text-align: center;
   padding-bottom: 120px;
+}
+
+.sns-icon {
+  width: 24px;
+  height: 24px;
 }
 
 .sns-links a {

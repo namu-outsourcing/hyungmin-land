@@ -212,6 +212,81 @@ if (aboutSlider) {
   }
 }
 
+// Lightbox
+(function () {
+  const lightbox = document.getElementById('lightbox');
+  if (!lightbox) return;
+
+  const lightboxImg = lightbox.querySelector('.lightbox-img');
+  const lightboxBackdrop = lightbox.querySelector('.lightbox-backdrop');
+  const lightboxClose = lightbox.querySelector('.lightbox-close');
+  const lightboxPrev = lightbox.querySelector('.lightbox-prev');
+  const lightboxNext = lightbox.querySelector('.lightbox-next');
+
+  const slides = Array.from(document.querySelectorAll('.about-slide'));
+  let currentLightboxIndex = 0;
+  let touchStartX = 0;
+
+  function updateLightboxImage() {
+    const img = slides[currentLightboxIndex].querySelector('img');
+    lightboxImg.src = img.src;
+    lightboxImg.alt = img.alt;
+  }
+
+  function openLightbox(index) {
+    currentLightboxIndex = index;
+    updateLightboxImage();
+    lightbox.setAttribute('aria-hidden', 'false');
+    lightbox.classList.add('is-open');
+    document.body.style.overflow = 'hidden';
+    lightboxClose.focus();
+  }
+
+  function closeLightbox() {
+    lightbox.classList.remove('is-open');
+    lightbox.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+  }
+
+  function showPrev() {
+    currentLightboxIndex = (currentLightboxIndex - 1 + slides.length) % slides.length;
+    updateLightboxImage();
+  }
+
+  function showNext() {
+    currentLightboxIndex = (currentLightboxIndex + 1) % slides.length;
+    updateLightboxImage();
+  }
+
+  slides.forEach((slide, index) => {
+    slide.addEventListener('click', () => openLightbox(index));
+  });
+
+  lightboxClose.addEventListener('click', closeLightbox);
+  lightboxBackdrop.addEventListener('click', closeLightbox);
+  lightboxPrev.addEventListener('click', showPrev);
+  lightboxNext.addEventListener('click', showNext);
+
+  document.addEventListener('keydown', (e) => {
+    if (!lightbox.classList.contains('is-open')) return;
+    if (e.key === 'Escape') closeLightbox();
+    if (e.key === 'ArrowLeft') showPrev();
+    if (e.key === 'ArrowRight') showNext();
+  });
+
+  lightbox.addEventListener('touchstart', (e) => {
+    touchStartX = e.touches[0].clientX;
+  }, { passive: true });
+
+  lightbox.addEventListener('touchend', (e) => {
+    const diff = touchStartX - e.changedTouches[0].clientX;
+    if (Math.abs(diff) > 50) {
+      if (diff > 0) showNext();
+      else showPrev();
+    }
+  }, { passive: true });
+})();
+
 window.addEventListener('resize', () => {
   updateMobileHeroHeight();
   if (window.innerWidth > 1080) {

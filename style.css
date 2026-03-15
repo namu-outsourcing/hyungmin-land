@@ -1544,6 +1544,11 @@ a {
   padding-bottom: 120px;
 }
 
+.sns-icon {
+  width: 24px;
+  height: 24px;
+}
+
 .sns-links a {
   display: inline-flex;
   align-items: center;

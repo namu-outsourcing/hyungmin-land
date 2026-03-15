@@ -51,6 +51,15 @@
           </div>
         </div>
         <div class="header-right">
+          <nav class="desktop-nav" aria-label="데스크탑 네비게이션">
+            <ul>
+              <li><a href="#hero">홈</a></li>
+              <li><a href="#about">후보자 소개</a></li>
+              <li><a href="#vision">후보자 비전</a></li>
+              <li><a href="#resume">학력/이력</a></li>
+              <li><a href="#contact">연락처</a></li>
+            </ul>
+          </nav>
           <button
             class="menu-toggle"
             type="button"
@@ -61,15 +70,24 @@
             <span class="sr-only">메뉴 열기</span>
           </button>
         </div>
-        <nav id="mainNav" class="main-nav" aria-label="주요 섹션">
-          <a href="#hero">홈</a>
-          <a href="#about">후보자 소개</a>
-          <a href="#vision">후보자 비전</a>
-          <a href="#resume">학력/이력</a>
-          <a href="#contact">연락처</a>
-        </nav>
       </div>
     </header>
+
+    <!-- Fullscreen overlay nav -->
+    <nav id="mainNav" class="main-nav" aria-label="주요 섯션">
+      <div class="main-nav__inner">
+        <button class="main-nav__close" type="button" aria-label="메뉴 닫기">
+          &times;
+        </button>
+        <ul class="main-nav__list">
+          <li><a href="#hero" class="main-nav__link">홈</a></li>
+          <li><a href="#about" class="main-nav__link">후보자 소개</a></li>
+          <li><a href="#vision" class="main-nav__link">정책 비전</a></li>
+          <li><a href="#resume" class="main-nav__link">학력/이력</a></li>
+          <li><a href="#contact" class="main-nav__link">연락처</a></li>
+        </ul>
+      </div>
+    </nav>
 
     <main>
       <section id="hero" class="hero">
@@ -81,27 +99,32 @@
 
         <div class="hero-container">
           <div class="hero-content">
-            <p class="hero-top-message">
-              <span class="message-phrase"
-                ><strong>말보다 행동</strong>으로</span
-              ><br />
-              <span class="message-phrase"
-                >거창한 약속보다 <strong>확실한 실천</strong>으로</span
-              ><br />
-              <span class="message-phrase">주민 여러분의 평범한 일상을</span
-              ><br />
-              <span class="message-phrase highlight-text"
-                >더 행복하게 만들겠습니다.</span
-              >
-            </p>
+            <div class="hero-top-message">
+              <p class="message-phrase tight-spacing">
+                <strong class="highlight-red">말보다 행동</strong>으로
+              </p>
+              <p class="message-phrase tight-spacing">
+                거창한 약속보다 <strong class="highlight-red">확실한 실천</strong>으로
+              </p>
+              <p class="message-phrase tight-spacing">
+                주민 여러분의 평범한 일상을
+              </p>
+              <p class="message-phrase">
+                <strong class="highlight-navy">더 행복하게 만들겠습니다.</strong>
+              </p>
+            </div>
 
             <div class="hero-bottom-group">
-              <h1 class="hero-main-slogan">제대로 일 할, 진짜 내 이웃!</h1>
+              <span class="hero-main-slogan">
+                <span class="slogan-line">제대로 일 할, 진짜 내 이웃!</br></span>
+                <span class="slogan-line">활기찬 우리 동네,</span>
+                <span class="slogan-line">든든한 평내·호평 지킴이</span>
+              </span>
               <div class="hero-identity">
                 <div class="identity-primary">
                   <span class="hero-symbol">2</span>
                   <strong class="hero-name">장형근</strong>
-                  <span class="hero-suffix">이 뜁니다</span>
+                  <p class="hero-suffix">이 뜁니다</p>
                 </div>
               </div>
             </div>
@@ -250,20 +273,8 @@
           <article class="vision-card stagger-item">
             <div class="card-header">
               <div class="card-title-group">
-                <svg
-                  class="custom-icon"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                >
-                  <path
-                    d="M3 21h18M3 10h18M5 21V7a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v14M9 10v4m6-4v4"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  />
-                </svg>
-                <h3>생활 인프라가 좋은 우리 동네 🏡</h3>
+                <span class="vision-emoji">🏡</span>
+                <h3>생활 인프라가 좋은 우리 동네</h3>
               </div>
             </div>
             <div class="card-body">
@@ -281,20 +292,8 @@
           <article class="vision-card stagger-item">
             <div class="card-header">
               <div class="card-title-group">
-                <svg
-                  class="custom-icon"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                >
-                  <path
-                    d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  />
-                </svg>
-                <h3>아이들이 안전한 우리 동네 🚸</h3>
+                <span class="vision-emoji">🚸</span>
+                <h3>아이들이 안전한 우리 동네</h3>
               </div>
             </div>
             <div class="card-body">
@@ -312,20 +311,8 @@
           <article class="vision-card stagger-item">
             <div class="card-header">
               <div class="card-title-group">
-                <svg
-                  class="custom-icon"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                >
-                  <path
-                    d="M4 15V5a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v10M4 15v4a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-4M4 15h16M8 11h.01M16 11h.01M9 18h6"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  />
-                </svg>
-                <h3>출퇴근이 편해지는 우리 동네 🚇</h3>
+                <span class="vision-emoji">🚇</span>
+                <h3>출퇴근이 편해지는 우리 동네</h3>
               </div>
             </div>
             <div class="card-body">
@@ -343,20 +330,8 @@
           <article class="vision-card stagger-item">
             <div class="card-header">
               <div class="card-title-group">
-                <svg
-                  class="custom-icon"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                >
-                  <path
-                    d="M3 21h18M5 21V7a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v14M13 21v-9a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v9M8 9h.01M8 13h.01M8 17h.01M16 13h.01M16 17h.01"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  />
-                </svg>
-                <h3>청년들이 살고 싶은 우리 동네 🚀</h3>
+                <span class="vision-emoji">🚀</span>
+                <h3>청년들이 살고 싶은 우리 동네</h3>
               </div>
             </div>
             <div class="card-body">
@@ -374,21 +349,8 @@
           <article class="vision-card stagger-item">
             <div class="card-header">
               <div class="card-title-group">
-                <svg
-                  class="custom-icon"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                >
-                  <path
-                    d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  />
-                  <circle cx="12" cy="7" r="4" stroke-width="2" />
-                </svg>
-                <h3>어르신이 행복한 우리 동네 👵</h3>
+                <span class="vision-emoji">👵</span>
+                <h3>어르신이 행복한 우리 동네</h3>
               </div>
             </div>
             <div class="card-body">
@@ -408,6 +370,7 @@
               새로운 평내·호평, <strong>"장형근"</strong>만의 특급 레시피를
               기대해 주세요.
             </p>
+            <span class="release-date">📅 2026.03.22 공개</span>
             <span class="coming-soon">Coming Soon!</span>
           </div>
         </div>
@@ -499,6 +462,34 @@
       </p>
     </footer>
 
+    <script>
+      // Section nav dot activation on scroll
+      (function () {
+        const dots = document.querySelectorAll(".section-nav__dot");
+        const sections = ["hero", "about", "vision", "resume", "contact"]
+          .map((id) => document.getElementById(id))
+          .filter(Boolean);
+
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                const activeId = entry.target.id;
+                dots.forEach((dot) => {
+                  dot.classList.toggle(
+                    "active",
+                    dot.getAttribute("href") === "#" + activeId,
+                  );
+                });
+              }
+            });
+          },
+          { threshold: 0.3 },
+        );
+
+        sections.forEach((s) => observer.observe(s));
+      })();
+    </script>
     <script src="./script.js"></script>
   </body>
 </html>

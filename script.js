@@ -39,6 +39,13 @@ if (menuButton) {
   });
 }
 
+const closeButton = document.querySelector('.main-nav__close');
+if (closeButton) {
+  closeButton.addEventListener('click', () => {
+    closeMenu();
+  });
+}
+
 navLinks.forEach((link) => {
   link.addEventListener('click', () => {
     closeMenu();

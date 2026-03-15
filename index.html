@@ -499,6 +499,17 @@
         sections.forEach((s) => observer.observe(s));
       })();
     </script>
+    <!-- Lightbox -->
+    <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-hidden="true" aria-label="사진 크게 보기">
+      <div class="lightbox-backdrop"></div>
+      <button class="lightbox-close" type="button" aria-label="닫기">&times;</button>
+      <button class="lightbox-prev" type="button" aria-label="이전 사진">&#8249;</button>
+      <button class="lightbox-next" type="button" aria-label="다음 사진">&#8250;</button>
+      <figure class="lightbox-figure">
+        <img class="lightbox-img" src="" alt="" />
+      </figure>
+    </div>
+
     <script src="./script.js"></script>
   </body>
 </html>

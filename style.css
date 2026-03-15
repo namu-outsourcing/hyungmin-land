@@ -471,26 +471,33 @@ a {
 
 .hero-top-message .message-phrase {
   position: relative;
-  padding-left: 20px;
+  padding-left: 0; /* 여백 제거 */
   display: block;
   opacity: 0.9;
+  margin: 0; /* 데스크탑 마진 제거 */
 }
 
-.hero-top-message .message-phrase::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  top: 0.7em;
-  width: 12px;
-  height: 2px;
-  background: #ffffff;
+.hero-top-message .tight-spacing {
+  margin-bottom: 2px; /* 간격 축소 */
+  line-height: 1.25; /* 줄높이 축소 */
+}
+
+.hero-top-message .highlight-red {
+  color: #e61e2b;
+  font-weight: 800;
+}
+
+.hero-top-message .highlight-navy {
+  color: #172b5a;
+  font-weight: 900;
+  font-size: 1.35rem; /* 데스크탑에서도 강조를 위해 살짝 크게 */
 }
 
 .hero-bottom-group {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  margin-top: 20px;
+  margin-top: 10px;
 }
 
 .hero-main-slogan {
@@ -638,7 +645,7 @@ a {
   .slogan-line {
     font-size: 1.25rem;
     font-weight: 800;
-    color: #172b5a; /* 네이비 톤으로 모바일 시인성 확보 */
+    color: #000000; /* 네이비 톤으로 모바일 시인성 확보 */
     line-height: 1.2;
     text-shadow: none;
     letter-spacing: -0.01em;
@@ -761,30 +768,7 @@ a {
     -webkit-backdrop-filter: none;
     z-index: 30;
   }
-  .hero-top-message strong {
-    font-weight: 800;
-    color: #e61e2b;
-  }
-  .hero-top-message .highlight-red {
-    color: #e61e2b;
-    font-weight: 800;
-  }
-  .hero-top-message .highlight-navy {
-    color: #172b5a;
-    font-weight: 900;
-    font-size: 1.4rem; /* 시안처럼 마지막 줄을 더 크게 */
-  }
-  .message-phrase {
-    margin-bottom: 8px; /* 문구 간 간격 */
-    font-weight: 700;
-    font-size: 1.25rem;
-    line-height: 1.35;
-    color: #1a1a1a;
-  }
-  .message-phrase.tight-spacing {
-    margin-bottom: 2px; /* 간격 대폭 축소 */
-    line-height: 0.3; /* 줄높이 축소 */
-  }
+
   .highlight-text {
     font-weight: 900;
     margin-top: 14px;
@@ -1433,26 +1417,7 @@ a {
   flex-wrap: wrap;
 }
 
-.sns-links a {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  padding: 16px 32px;
-  background: #f8f9fa;
-  border-radius: 20px;
-  font-weight: 700;
-  color: #121820;
-  transition:
-    background-color 0.2s ease,
-    transform 0.2s ease,
-    box-shadow 0.2s ease;
-}
 
-.sns-links a:hover {
-  background: #e9ecef;
-  transform: translateY(-3px);
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
-}
 
 @media (max-width: 1080px) {
   .vision-grid {
@@ -1575,14 +1540,17 @@ a {
 .sns-links a {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   height: 52px;
   padding: 0 30px;
+  gap: 12px;
   background: #ffffff;
   color: #1a1f27;
   border: 1px solid #edf1f7;
   border-radius: 16px;
   font-weight: 700;
   font-size: 1rem;
+  white-space: nowrap; /* 글자 줄바꿈 방지 */
   transition: all 0.3s ease;
 }
 

@@ -155,7 +155,7 @@ a {
     position: absolute;
     bottom: -2px;
     left: 0;
-    width: 20px;
+    width: 100%;
     height: 2px;
     background: #e61e2b;
     transform: scaleX(0);
@@ -750,7 +750,7 @@ a {
     background-color: #ffffff;
   }
   .hero-content {
-    padding: 140px 24px 40px; /* 헤더 겹침 방지를 위해 상단 패딩 대폭 상향 */
+    padding: 100px 24px 40px; /* 헤더 겹침 방지를 위해 상단 패딩 조절 */
     position: relative;
     z-index: 30;
     display: flex;
@@ -769,7 +769,7 @@ a {
     color: #1a1a1a;
     width: 100%;
     max-width: none; /* 너비 제한 해제 */
-    margin-top: 80px;
+    margin-top: 40px;
     margin-bottom: auto; /* 아래 요소 밀어냄 */
     padding: 0;
     background: transparent;
@@ -799,7 +799,7 @@ a {
     display: flex;
     flex-direction: column;
     align-items: flex-end; /* "2 홍길동" 처럼 시각적 무게를 위해 조절 가능, 필요시 수정 */
-    margin-top: 215px;
+    margin-top: 30px;
     margin-bottom: 0;
   }
   .hero-main-slogan {
@@ -825,7 +825,7 @@ a {
     gap: 8px;
   }
   .hero-symbol {
-    font-size: 7.5rem; /* 더 크게 압도적으로 */
+    font-size: 5.5rem; /* 소형 기기 대응을 위해 크기 축소 (기존 7.5rem) */
     /* color: #172b5a; 파란색 계열 (시안 참고) */
     font-weight: 900;
     -webkit-text-stroke: none; /* 외곽선 제거 */
@@ -833,7 +833,7 @@ a {
     line-height: 0.8;
   }
   .hero-name {
-    font-size: 5rem; /* 이름도 크게 */
+    font-size: 3.8rem; /* 소형 기기 대응을 위해 크기 축소 (기존 5rem) */
     line-height: 0.85;
     color: #ffffff; /* 흰색 글씨 */
     font-weight: 900;
@@ -976,18 +976,6 @@ a {
   overflow: hidden; /* 배경 텍스트 넘침 방지용 */
 }
 
-.section-about::before {
-  content: "ABOUT";
-  position: absolute;
-  top: 5%;
-  left: -5%;
-  font-size: 20vw;
-  font-weight: 900;
-  color: rgba(230, 30, 43, 0.015);
-  z-index: 0;
-  pointer-events: none;
-  font-family: "Montserrat", sans-serif;
-}
 
 .section-about .section-title-wrap,
 .section-vision .section-title-wrap,
@@ -1375,8 +1363,12 @@ a {
   transition: background 0.2s;
 }
 
-.lightbox-prev { left: 16px; }
-.lightbox-next { right: 16px; }
+.lightbox-prev {
+  left: 16px;
+}
+.lightbox-next {
+  right: 16px;
+}
 
 .lightbox-prev:hover,
 .lightbox-next:hover {
@@ -1384,8 +1376,12 @@ a {
 }
 
 @media (max-width: 760px) {
-  .lightbox-prev { left: 8px; }
-  .lightbox-next { right: 8px; }
+  .lightbox-prev {
+    left: 8px;
+  }
+  .lightbox-next {
+    right: 8px;
+  }
   .lightbox-prev,
   .lightbox-next {
     width: 40px;
@@ -1647,6 +1643,12 @@ a {
   font-size: 1.1rem;
   line-height: 1.8;
   color: #4a515f;
+}
+
+.resume-note {
+  font-size: 0.85em;
+  opacity: 0.8;
+  margin-left: 2px;
 }
 
 .resume-box li + li {

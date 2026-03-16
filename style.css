@@ -340,7 +340,31 @@ a {
 }
 
 .highlight-name {
-  color: navy;
+  color: #011f4d; /* --ppp-navy */
+  position: relative;
+  display: inline-block;
+  padding: 0 2px;
+  z-index: 1;
+}
+
+.highlight-name::after {
+  content: "";
+  position: absolute;
+  bottom: 2px;
+  left: -1px;
+  right: -1px;
+  height: 50%; /* 폰트 크기에 비례하도록 퍼센트 사용 */
+  background: rgba(255, 230, 0, 0.45);
+  z-index: -1;
+  border-radius: 2px;
+  transform: rotate(-1deg);
+}
+
+@media (max-width: 760px) {
+  .highlight-name::after {
+    bottom: 0px; /* 모바일에서 더 아래로 배치 */
+    height: 40%;
+  }
 }
 
 /* Merged into lines 81-100 */
@@ -1047,6 +1071,13 @@ a {
   z-index: -1;
   border-radius: 4px;
   transform: rotate(-1.5deg);
+}
+
+@media (max-width: 760px) {
+  .about-header h3 strong::after {
+    bottom: 4px; /* 글씨 밑 부분으로 배치 */
+    height: 14px;
+  }
 }
 
 .about-features {

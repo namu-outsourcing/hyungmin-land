@@ -793,7 +793,7 @@ a {
     color: #1a1a1a;
     width: 100%;
     max-width: none; /* 너비 제한 해제 */
-    margin-top: 40px;
+    margin-top: 140px;
     margin-bottom: auto; /* 아래 요소 밀어냄 */
     padding: 0;
     background: transparent;
@@ -999,7 +999,6 @@ a {
     linear-gradient(180deg, #f6f7fa 0%, #ffffff 70%);
   overflow: hidden; /* 배경 텍스트 넘침 방지용 */
 }
-
 
 .section-about .section-title-wrap,
 .section-vision .section-title-wrap,

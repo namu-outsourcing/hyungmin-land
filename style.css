@@ -804,6 +804,13 @@ a {
     z-index: 30;
   }
 
+  /* iPhone SE 등 세로가 짧은 기기 대응 */
+  @media (max-height: 700px) {
+    .hero-top-message {
+      margin-top: 75px;
+    }
+  }
+
   .highlight-text {
     font-weight: 900;
     margin-top: 14px;
@@ -1430,12 +1437,15 @@ a {
 .vision-grid {
   max-width: 1220px;
   margin: 0 auto;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   gap: 24px;
 }
 
 .vision-card {
+  flex: 0 1 calc((100% - (24px * 2)) / 3);
+  min-width: 320px;
   background: #ffffff;
   border-radius: 20px;
   border: 1px solid #e8edf5;
@@ -1523,33 +1533,133 @@ a {
   border-radius: 50%;
 }
 
-/* 레시피 클로징 멘트 (비전 그리드 6번째 카드) */
-.vision-footer {
-  text-align: center;
+/* 특급 레시피 섹션 - 다크 모드 (프리미엄 연출) */
+.section-recipe {
+  background: #0f172a; /* 딥 다크 네이비 배경 */
+  color: #ffffff;
+  padding: 100px 20px;
+  position: relative;
+  overflow: hidden;
+}
+
+.section-recipe .section-title-wrap {
+  position: relative;
+  z-index: 1;
+}
+
+.section-recipe .about-kicker {
+  color: #e61e2b; /* 강조 붉은색 */
+  font-weight: 800;
+}
+
+.section-recipe h2 {
+  color: #ffffff;
+}
+
+.section-recipe h2 strong {
+  color: #e61e2b;
+  text-shadow: 0 0 15px rgba(230, 30, 43, 0.4);
+}
+
+.section-recipe .vision-grid {
+  position: relative;
+  z-index: 1;
+}
+
+.section-recipe .vision-card {
+  background: rgba(30, 41, 59, 0.7); /* 반투명 다크 카드 */
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-top: 3px solid #e61e2b;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.section-recipe .vision-card:hover {
+  transform: translateY(-8px);
+  border-color: rgba(230, 30, 43, 0.5);
+  box-shadow: 0 15px 40px rgba(230, 30, 43, 0.15);
+}
+
+.recipe-title-wrap {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  align-items: flex-start;
+  gap: 16px; /* 배지와 하단(이모지+제목) 사이 간격 */
+  width: 100%;
 }
 
-.recipe-text {
-  font-size: 1.15rem;
-  line-height: 1.4;
-  color: #1a202c;
+.recipe-title-wrap h3 {
+  font-size: 1.1rem;
   font-weight: 800;
+  color: #ffffff;
+  line-height: 1.4; /* 줄바꿈 시 쾌적한 가독성을 위해 상향 */
+  margin: 0;
   word-break: keep-all;
+  letter-spacing: -0.03em;
 }
 
-.coming-soon {
-  display: block;
-  font-family: "Montserrat", sans-serif;
-  font-size: 1.3rem;
-  font-weight: 950;
-  color: #e61e2b;
-  margin-top: 12px;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-  font-style: italic;
+.recipe-badge {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 800;
+  color: #ffffff;
+  background: #e61e2b;
+  padding: 4px 10px;
+  border-radius: 20px;
+  border: none;
+  box-shadow: 0 2px 10px rgba(230, 30, 43, 0.3);
+}
+
+.recipe-footer-wrap {
+  margin-top: 80px;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+}
+
+.closing-message {
+  font-size: 1.6rem;
+  font-weight: 900;
+  color: #ffffff;
+  margin-bottom: 32px;
+  word-break: keep-all;
+  text-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+}
+
+.sns-guide {
+  font-size: 1.1rem;
+  color: #cbd5e1;
+  line-height: 1.6;
+  word-break: keep-all;
+  padding: 24px 32px;
+  background: rgba(255, 255, 255, 0.05);
+  display: inline-block;
+  border-radius: 24px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(5px);
+}
+
+.sns-id-link {
+  font-weight: 800;
+  color: #ff4d5a; /* 다크에서 더 잘 보이는 밝은 레드 */
+  margin-left: 4px;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  padding: 2px 8px;
+  border-radius: 8px;
+  background: rgba(230, 30, 43, 0.15);
+}
+
+.sns-id-link:hover {
+  background: #e61e2b;
+  color: #ffffff;
+  text-decoration: none;
+  box-shadow: 0 0 15px rgba(230, 30, 43, 0.4);
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 /* 소통 채널 개편 */
@@ -1579,14 +1689,20 @@ a {
 }
 
 @media (max-width: 1080px) {
-  .vision-grid {
-    grid-template-columns: repeat(2, 1fr);
+  .vision-card {
+    flex: 0 1 calc((100% - 24px) / 2);
   }
 }
 
 @media (max-width: 760px) {
   .vision-grid {
-    grid-template-columns: 1fr;
+    flex-direction: column;
+    gap: 16px;
+  }
+  .vision-card {
+    flex: 0 1 100%;
+    padding: 24px 20px;
+    border-radius: 18px;
   }
   .sns-links {
     flex-direction: column;
@@ -2061,31 +2177,14 @@ a {
     justify-content: center;
     margin-top: 24px;
   }
-
   .about-profile {
     max-width: 280px;
     margin: 10px auto 0;
     justify-self: center;
   }
+}
 
-  /* 비전 섹션 모바일 최적화 */
-  .vision-grid {
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-  }
-
-  .vision-card {
-    padding: 24px 20px;
-    border-radius: 18px;
-  }
-
-  .vision-card h3 {
-    font-size: 1.2rem;
-    min-height: auto;
-    margin-bottom: 8px;
-  }
-
+@media (max-width: 760px) {
   .vision-card p {
     font-size: 0.92rem;
   }

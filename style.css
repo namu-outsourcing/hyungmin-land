@@ -978,6 +978,13 @@ a {
   font-weight: 700;
 }
 
+.resume-note {
+  font-size: 0.85em;
+  color: var(--muted);
+  font-weight: 400;
+  margin-left: 2px;
+}
+
 .section-about .section-en {
   color: #b90f1b;
 }
